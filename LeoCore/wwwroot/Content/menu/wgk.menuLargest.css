@@ -1,0 +1,139 @@
+/* 
+    Stylesheet for WGKMenu widget
+*/
+.menucontainer *
+{
+    margin: 0;
+    padding: 0;
+}
+
+.menucontainer a
+{
+    text-decoration: none;
+}
+
+.menucontainer ul
+{
+    list-style: none;
+}
+
+.menucontainer p
+{
+    margin: 15px 0;
+}
+
+/* 
+    MENU CONTAINER
+*/
+div.menucontainer
+{
+    font: 24px Verdana, Helvetica, sans-serif;
+    background-image: url(bck_modnav.gif);
+    background-position: top left;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    display: block;
+    height: 41px;
+    margin-bottom: 10px;
+}
+
+/* 
+    LEVEL ONE
+*/
+ul.dropdown
+{
+    position: relative;
+    width: 1455px;
+    height: 38px;
+    border-top: none;
+    border-bottom: none;
+    padding: 0 0 2px;
+    border-left: 1px solid white;
+    margin: 0 auto;
+    z-index: 1;/*Make sure menu is on top of other elements on the page*/
+}
+
+ul.dropdown li
+{
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    display: block;
+    padding: 0 35px;
+    height: 41px;
+    line-height: 41px;
+    border-left-color: white;
+    border-right-color: white;
+    float: left;
+    zoom: 1;
+    text-align: left;
+    text-decoration: none;
+}
+
+ul.dropdown li a
+{
+    color: #fff;
+    line-height: 41px;
+}
+
+ul.dropdown li.hover, ul.dropdown li:hover
+{
+    background: #6ea55b;
+    position: relative;
+}
+
+ul.dropdown li:last-child a
+{
+    border-right: none;
+}
+
+/* Doesn't work in IE */
+ul.dropdown li.hover a
+{
+    color: black;
+}
+
+
+/* 
+    LEVEL TWO
+*/
+ul.dropdown ul
+{
+    width: 330px;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    background-color: #78af65;
+    border: 1px solid #fff;
+    font-size: 15px;
+}
+
+ul.dropdown ul li
+{
+    font-weight: normal;
+    color: #000;
+    float: none;
+    border-right: none;
+}
+
+/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a
+{
+    border-right: none;
+    width: 100%;
+    display: inline-block;
+}
+
+/* 
+    LEVEL THREE
+*/
+ul.dropdown ul ul
+{
+    left: 100%;
+    top: 0;
+}
+
+ul.dropdown li:hover > ul
+{
+    visibility: visible;
+}

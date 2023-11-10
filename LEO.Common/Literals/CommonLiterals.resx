@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutPageTitle" xml:space="preserve">
+    <value>Info over</value>
+  </data>
+  <data name="AddButtonDisplayName" xml:space="preserve">
+    <value>Toevoegen</value>
+    <comment>Insert in list</comment>
+  </data>
+  <data name="AdministrationPageTitle" xml:space="preserve">
+    <value>{0} administratie</value>
+    <comment>Title for admin pages, {0}: entity name</comment>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>DOS administatieve schadedossiers</value>
+  </data>
+  <data name="BackButtonDisplayName" xml:space="preserve">
+    <value>Terug</value>
+    <comment>Navigeren naar vorige pagina</comment>
+  </data>
+  <data name="BackToListButtonDisplayName" xml:space="preserve">
+    <value>Terug naar lijst</value>
+    <comment>Gebruikt in DynamicData</comment>
+  </data>
+  <data name="BeheerEntityDisplayName" xml:space="preserve">
+    <value>Beheer</value>
+  </data>
+  <data name="CancelButtonDisplayName" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>Gebruikt in DynamicData en in jqGrid</comment>
+  </data>
+  <data name="ChildRowMissingErrorMessage" xml:space="preserve">
+    <value>{0} werd door andere gebruiker verwijderd in de databank</value>
+  </data>
+  <data name="ClearButtonDisplayName" xml:space="preserve">
+    <value>Wissen</value>
+  </data>
+  <data name="CloseButtonDisplayName" xml:space="preserve">
+    <value>Afsluiten</value>
+    <comment>Om dialog box af te sluiten</comment>
+  </data>
+  <data name="ConcurrencyErrorMessage" xml:space="preserve">
+    <value>{0} werd door andere gebruiker gelijktijdig gewijzigd in databank</value>
+  </data>
+  <data name="CopySuccessfullInfoMessage" xml:space="preserve">
+    <value>{0} werd succesvol gekopieerd en is nu geopend.</value>
+  </data>
+  <data name="CreateButtonDisplayName" xml:space="preserve">
+    <value>Nieuw aanmaken</value>
+    <comment>Create new item</comment>
+  </data>
+  <data name="CreateFailurefulInfoMessage" xml:space="preserve">
+    <value>Kan deze WGK medewerker niet aanmaken/bewerken in deze databank. Omwille van {0}</value>
+  </data>
+  <data name="CreateParentFirstMessage" xml:space="preserve">
+    <value>{0} moet aangemaakt worden vooraleer rijen kunnen toegevoegd worden</value>
+    <comment>Gebruikt in jqGrid save row</comment>
+  </data>
+  <data name="CreateSuccessfulInfoMessage" xml:space="preserve">
+    <value>{0} succesvol aangemaakt in databank</value>
+  </data>
+  <data name="DashboardNotificationsDisplayName" xml:space="preserve">
+    <value>Dashboard-meldingen</value>
+  </data>
+  <data name="DeleteButtonDisplayName" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="DeleteConfirmationMessage" xml:space="preserve">
+    <value>Bent u zeker dat u dit item wil verwijderen?</value>
+    <comment>Gebruikt in DynamicData en in jqGrid</comment>
+  </data>
+  <data name="DeleteFailurefulInfoMessage" xml:space="preserve">
+    <value>Kan {0} niet verwijderen uit databank. Omwille van {1}</value>
+  </data>
+  <data name="DeleteSuccessfulInfoMessage" xml:space="preserve">
+    <value>{0} succesvol verwijderd in databank</value>
+  </data>
+  <data name="DetailButtonDisplayName" xml:space="preserve">
+    <value>Detail</value>
+    <comment>Gebruikt in DynamicData en in jqGrid</comment>
+  </data>
+  <data name="DuplicateChildRowErrorMessage" xml:space="preserve">
+    <value>{0} {1} is reeds toegevoegd</value>
+    <comment>{0}: entity name,  {1}: beschrijving</comment>
+  </data>
+  <data name="EditButtonDisplayName" xml:space="preserve">
+    <value>Bewerken</value>
+    <comment>Gebruikt in DynamicData en in jqGrid</comment>
+  </data>
+  <data name="GisButtonDisplayName" xml:space="preserve">
+    <value>Kaart</value>
+    <comment>GIS Viewer</comment>
+  </data>
+  <data name="HelpDisplayName" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpPageTitle" xml:space="preserve">
+    <value>Handleiding</value>
+  </data>
+  <data name="IdentificationPageTitle" xml:space="preserve">
+    <value>{0} zoeken</value>
+    <comment>Title for Index views/pages, {0}: entity name</comment>
+  </data>
+  <data name="LeavePageWarningMessage" xml:space="preserve">
+    <value>Wijzigingen zullen verloren gaan door deze pagina te verlaten zonder op te slaan.</value>
+    <comment>Getoond als in de browser op de back button geklikt wordt</comment>
+  </data>
+  <data name="LogDisplayName" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="MaintenancePageCreateTitle" xml:space="preserve">
+    <value>{0} aanmaken</value>
+    <comment>Title for Create views/pages, {0}: entity name</comment>
+  </data>
+  <data name="MaintenancePageDeleteTitle" xml:space="preserve">
+    <value>{0} verwijderen</value>
+  </data>
+  <data name="MaintenancePageEditTitle" xml:space="preserve">
+    <value>{0} beheren</value>
+    <comment>Title for Edit views/pages, {0}: entity name</comment>
+  </data>
+  <data name="MaintenancePagePrintTitle" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="MaintenancePageSelectTitle" xml:space="preserve">
+    <value>{0} selecteren</value>
+    <comment>Title for Select views/pages, {0}: entity name</comment>
+  </data>
+  <data name="MaintenancePageViewTitle" xml:space="preserve">
+    <value>{0} detail</value>
+    <comment>Title for Detail views/pages. Gebruikt in DynamicData, {0}: entity name</comment>
+  </data>
+  <data name="NoItemMessage" xml:space="preserve">
+    <value>Geen item</value>
+    <comment>Gebruikt in DynamicData</comment>
+  </data>
+  <data name="OKButtonDisplayName" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenButtonDisplayName" xml:space="preserve">
+    <value>Openen</value>
+    <comment>Open selected item</comment>
+  </data>
+  <data name="PagingSearchCriteriaDisplayName" xml:space="preserve">
+    <value>PagingSearchCriteria</value>
+  </data>
+  <data name="PrintButtonDisplayName" xml:space="preserve">
+    <value>Afdrukken</value>
+  </data>
+  <data name="RefreshButtonDisplayName" xml:space="preserve">
+    <value>Vernieuwen</value>
+  </data>
+  <data name="RowVersionDisplayName" xml:space="preserve">
+    <value>RowVersion</value>
+  </data>
+  <data name="SaveButtonDisplayName" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="SaveInBetweenButtonDisplayName" xml:space="preserve">
+    <value>Tussentijds opslaan</value>
+    <comment>Save and stay in Edit modus</comment>
+  </data>
+  <data name="SearchButtonDisplayName" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
+  <data name="SearchCriteriaDisplayName" xml:space="preserve">
+    <value>Zoekcriteria</value>
+  </data>
+  <data name="SearchResultsDisplayName" xml:space="preserve">
+    <value>Zoekresultaten</value>
+  </data>
+  <data name="SelectButtonDisplayName" xml:space="preserve">
+    <value>Andere selecteren</value>
+    <comment>Select existing item</comment>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Er is een onverwachte fout opgetreden</value>
+  </data>
+  <data name="UpdateButtonDisplayName" xml:space="preserve">
+    <value>Bijwerken</value>
+    <comment>Gebruikt in DynamicData</comment>
+  </data>
+  <data name="UpdateSuccessfulInfoMessage" xml:space="preserve">
+    <value>{0} succesvol bijgewerkt in databank</value>
+  </data>
+  <data name="UserCodeEntityDisplayName" xml:space="preserve">
+    <value>Usercode</value>
+  </data>
+  <data name="UserCodeReloadSuccessfulInfoMessage" xml:space="preserve">
+    <value>Usercodes succesvol herladen</value>
+  </data>
+  <data name="ValidationSummaryTitle" xml:space="preserve">
+    <value>Er is een fout opgetreden</value>
+  </data>
+</root>

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @*   <link href="@this.Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" /> *@
+    <
+    <script src="~/Scripts/modernizr-1.7.js"></script>
+    <script src="~/Scripts/modernizr-1.7.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Learning Management System</p>
+        </footer>
+    </div>
+    <script src="@this.Url.Content("~/Scripts/modernizr-1.7.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/respond.js")" type="text/javascript"></script>
+
+    <script src="@this.Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@this.Url.Content("~/Scripts/jquery.validate-vsdoc.js")" type="text/javascript"></script>
+
+    <script src="~/bundles/jquery"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

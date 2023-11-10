@@ -1,0 +1,3 @@
+.ui-tabs                { border: none; background: #fff; } 
+.ui-tabs .ui-tabs-nav   { border-top: none; border-right: none; border-left: none; background: #fff; -webkit-border-radius: 0px; border-radius: 0px;}
+.ui-tabs .ui-tabs-panel { border-color: #D4CCB0; }

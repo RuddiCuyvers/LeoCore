@@ -1,0 +1,31 @@
+
+/*create the cross*/
+[class^="Person_QuestionnaireDetail_PERSON_QUESTIONNAIRE_ANSWERDetails_"]::before {
+    background-image: url('../Rescources/KruisWit.png');
+    background-size: 35px 35px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    content: "";
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+    
+}
+/*remove the default style (italic) of the cross*/
+[class^="Person_QuestionnaireDetail_PERSON_QUESTIONNAIRE_ANSWERDetails_"] {
+    width: auto;
+    font-style: unset !important;
+    
+}
+/*set active cross color*/
+.is-active {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(90%) saturate(412%) hue-rotate(353deg) brightness(101%) contrast(102%);
+}
+/*set color on hover*/
+[class^="Person_QuestionnaireDetail_PERSON_QUESTIONNAIRE_ANSWERDetails_"]:not(.is-active):hover {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(90%) saturate(412%) hue-rotate(353deg) brightness(101%) contrast(102%);
+}
+
+
+
