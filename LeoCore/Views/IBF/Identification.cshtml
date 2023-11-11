@@ -10,12 +10,18 @@
 @model LeoCore.Models.IBF.IBFIdentificationViewModel
 
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-       
+    @*Button event handlers*@
+            $("#SearchButton").click(function (pEvent) {
+                var vJaartal = $("#Jaartal").val();
+                var vClientID = '';
+                var vInternExtern = '';
+                window.location.href = '/IBF/Identification?pID=' + vClientID + '&pJaartal=' + vJaartal + '&pInternExtern=' + vInternExtern;
+            });
 
-    });@* END OF $(document).ready function *@
+
+    }); @* END OF $(document).ready function *@
 </script>
 @* Body section *@
-
 @this.Html.Partial("IdentificationPartial")

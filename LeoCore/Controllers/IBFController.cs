@@ -16,7 +16,6 @@ using AutoMapper;
 using System.IO;
 using static System.Formats.Asn1.AsnWriter;
 
-
 namespace LeoCore.Controllers
 {
     // [Authorize]
@@ -85,6 +84,10 @@ namespace LeoCore.Controllers
         public ViewResult Identification(string pID, string pJaartal, string pInternExtern)
         {
             var vViewModel = GetIdentificationViewModel();
+            if (Int32.TryParse(pJaartal, out int  j))
+            {
+                vViewModel.Jaartal = j;
+            }
             return this.View(vViewModel);
         }
         #endregion
@@ -95,8 +98,8 @@ namespace LeoCore.Controllers
         {
             IBFIdentificationViewModel vIBFIdentificationModel = new IBFIdentificationViewModel();
             IEnumerable<Data.Models.TRAINING> trainingsItems = _repository.FindAllTRAININGs();
-            var infoviewmodels = _mapper.Map<IEnumerable<Data.Models.TRAINING>, IEnumerable<IBFInfoViewModel>>(trainingsItems);
-            vIBFIdentificationModel.MijnIBFTrainingen = (ICollection<IBFInfoViewModel>)infoviewmodels;
+            var infoviewmodels = _mapper.Map<IEnumerable<Data.Models.TRAINING>, IEnumerable<IBFIdentification_DTO>>(trainingsItems);
+            vIBFIdentificationModel.MijnIBFTrainingen = (ICollection<IBFIdentification_DTO>)infoviewmodels;
             return vIBFIdentificationModel;
         }
         #endregion

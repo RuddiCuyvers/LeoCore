@@ -5,7 +5,7 @@ using LEO.Common.Constants.Persons;
 
 namespace LeoCore.Models.IBF
 {
-    public class IBFInfoViewModel
+    public class IBFIdentification_DTO
     {
         #region Constants - Field names
         private const string cTrainingIDFieldName = "TrainingID";

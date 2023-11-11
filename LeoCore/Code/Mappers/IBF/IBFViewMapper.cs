@@ -7,7 +7,7 @@ namespace LEO.Web.Code.Mappers.IBF
     {
         public IBFViewMapper()
         {
-            this.CreateMap<LeoCore.Data.Models.TRAINING, IBFInfoViewModel>()
+            this.CreateMap<LeoCore.Data.Models.TRAINING, IBFIdentification_DTO>()
                 .ForMember(dest => dest.TrainingID, opt => opt.MapFrom(src => src.ID))
                 .ForMember(dest => dest.Person_TrainingID, opt => opt.MapFrom(src => src.PERSON_TRAININGs.FirstOrDefault().ID))
                 .ForMember(dest => dest.NOMENCLATUUR_YN, opt => opt.MapFrom(src => src.NOMENCL_CONV_YN))
