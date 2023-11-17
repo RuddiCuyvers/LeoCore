@@ -13,9 +13,9 @@ public partial class QUESTIONNAIRE
 
     public string INFO { get; set; }
 
-    public DateOnly DATE_VALID_START { get; set; }
+    public DateTime DATE_VALID_START { get; set; }
 
-    public DateOnly? DATE_VALID_END { get; set; }
+    public DateTime? DATE_VALID_END { get; set; }
 
     public string QUESTIONNAIREcol { get; set; }
 

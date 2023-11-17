@@ -511,7 +511,7 @@ Services Style - learning items Bootstrap
         z-index: 0;
     }
 
-    .services:before {
+/*    .services:before {
         content: "";
         background-image: url(../images/Kleurvormen-onder-main.png);
         background-repeat: no-repeat;
@@ -521,7 +521,7 @@ Services Style - learning items Bootstrap
         width: 1136px;
         height: 244px;
         z-index: 0;
-    }
+    }*/
 
     .services .section-heading {
         text-align: center;
@@ -737,6 +737,8 @@ responsive
     .main-banner .left-content .white-button a {
         background-color: #001f5b;
         color: #fff !important;
+        margin-top: 10;
+
     }
 
     form#contact {

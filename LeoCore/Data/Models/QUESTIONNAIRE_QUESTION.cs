@@ -15,11 +15,11 @@ public partial class QUESTIONNAIRE_QUESTION
 
     public string MANDATORY { get; set; }
 
-    public int ORDER { get; set; }
+    public int SORTORDER { get; set; }
 
-    public DateOnly DATE_VALID_START { get; set; }
+    public DateTime DATE_VALID_START { get; set; }
 
-    public DateOnly? DATE_VALID_END { get; set; }
+    public DateTime? DATE_VALID_END { get; set; }
 
     public virtual QUESTION QUESTION { get; set; }
 

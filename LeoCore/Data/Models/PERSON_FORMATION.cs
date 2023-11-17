@@ -13,7 +13,7 @@ public partial class PERSON_FORMATION
 
     public string SUBJECT { get; set; }
 
-    public DateOnly DATUM_START { get; set; }
+    public DateTime DATUM_START { get; set; }
 
     public int? DURATION { get; set; }
 

@@ -70,11 +70,14 @@ namespace LeoCore.Controllers
 
         private readonly IMapper _mapper;
         private readonly ITrainingRepository _repository;
-        
+
+
         public IBFController(ITrainingRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
+           
+
         }
         #endregion
 
@@ -96,6 +99,7 @@ namespace LeoCore.Controllers
         #region Private Methods - Identification
         private IBFIdentificationViewModel GetIdentificationViewModel()
         {
+
             IBFIdentificationViewModel vIBFIdentificationModel = new IBFIdentificationViewModel();
             IEnumerable<Data.Models.TRAINING> trainingsItems = _repository.FindAllTRAININGs();
             var infoviewmodels = _mapper.Map<IEnumerable<Data.Models.TRAINING>, IEnumerable<IBFIdentification_DTO>>(trainingsItems);

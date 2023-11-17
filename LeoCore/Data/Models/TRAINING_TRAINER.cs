@@ -13,9 +13,9 @@ public partial class TRAINING_TRAINER
 
     public string MANDATORY { get; set; }
 
-    public DateOnly DATE_VALID_START { get; set; }
+    public DateTime DATE_VALID_START { get; set; }
 
-    public DateOnly? DATE_VALID_END { get; set; }
+    public DateTime? DATE_VALID_END { get; set; }
 
     public string CLIENT_ID { get; set; }
 

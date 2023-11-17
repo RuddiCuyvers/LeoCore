@@ -7,12 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mvc\Controls\Grid\**" />
+    <EmbeddedResource Remove="Mvc\Controls\Grid\**" />
+    <None Remove="Mvc\Controls\Grid\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Admin.Directory.directory_v1" Version="1.63.0.3232" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.63.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LEO.Common\LEO.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

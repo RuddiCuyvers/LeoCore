@@ -68,7 +68,7 @@ namespace LeoCore.Data
             {
                 // Include entities referred to by foreign key
                 vQUESTIONNAIREQuery = vQUESTIONNAIREQuery.Include(p => p.QUESTIONNAIRE_QUESTIONs);
-                vQUESTIONNAIREQuery = vQUESTIONNAIREQuery.Include(p => p.QUESTIONNAIRE_QUESTIONs.Select(qq => qq.QUESTION));
+                //vQUESTIONNAIREQuery = vQUESTIONNAIREQuery.Include(p => p.QUESTIONNAIRE_QUESTIONs.Select(qq => qq.QUESTION));
 
             }
 

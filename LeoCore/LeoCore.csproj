@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Business\**" />
+    <Compile Remove="wwwroot\js\MvcGrid\**" />
+    <Content Remove="Business\**" />
+    <Content Remove="wwwroot\js\MvcGrid\**" />
+    <EmbeddedResource Remove="Business\**" />
+    <EmbeddedResource Remove="wwwroot\js\MvcGrid\**" />
+    <None Remove="Business\**" />
+    <None Remove="wwwroot\js\MvcGrid\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.css" />
     <Content Remove="wwwroot\Scripts\bootstrap.min.js" />
     <Content Remove="wwwroot\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Remove="wwwroot\Scripts\jquery-1.10.2.min.js" />
@@ -48,6 +60,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Remove="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -71,11 +87,91 @@
     <Folder Include="Code\Helpers\" />
     <Folder Include="Code\Initializations\" />
     <Folder Include="Resources\" />
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker-en-CA.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ar-tn.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ar.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.az.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.bg.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.bn.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.br.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.bs.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ca.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.cs.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.cy.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.da.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.de.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.el.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-AU.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-CA.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-GB.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-IE.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-NZ.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.en-ZA.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.eo.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.es.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.et.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.eu.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.fa.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.fi.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.fo.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.fr.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.gl.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.he.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.hi.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.hr.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.hu.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.hy.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.id.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.is.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.it-CH.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.it.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ja.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ka.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.kh.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.kk.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.km.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ko.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.kr.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.lt.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.lv.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.me.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.mk.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.mn.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ms.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.nl.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.no.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.oc.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.pl.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.pt.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ro.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.rs.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ru.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.si.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sk.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sl.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sq.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sr.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sv.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.sw.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.ta.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.tg.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.th.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.tk.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.tr.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.uk.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.uz-cyrl.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.uz-latn.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.vi.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.zh-TW.min.js" />
     <None Include="wwwroot\Scripts\bootstrap.min.js" />
     <None Include="wwwroot\Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="wwwroot\Scripts\jquery-1.10.2.min.js" />
@@ -112,16 +208,145 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="bootstrap" Version="5.3.2" />
+    <PackageReference Include="Bootstrap.Datepicker" Version="1.8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\Content\bootstrap.css">
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.esm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.js.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Content\Home\animated.css">
@@ -403,6 +628,12 @@
     <Content Update="wwwroot\Content\menu\wgk.menuStandard.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Content\MvcGrid\fonts\grid-glyphs.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\MvcGrid\mvc-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Content\Print.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -441,6 +672,62 @@
     </Content>
     <Content Update="wwwroot\Content\ui.jqgrid.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.standalone.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.standalone.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker.standalone.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.standalone.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.standalone.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap-datepicker\bootstrap-datepicker3.standalone.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\mvc-grid\fonts\grid-glyphs.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\mvc-grid\mvc-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\bootstrap-datapicker\bootstrap-datepicker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\bootstrap-datapicker\bootstrap-datepicker.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\mvc-grid\mvc-grid.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="wwwroot\Rescources\Amarilla_Cruzado_VPK-01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

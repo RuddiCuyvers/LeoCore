@@ -15,7 +15,7 @@ public partial class PERSON_QUESTIONNAIRE
 
     public int TRAINING_ID { get; set; }
 
-    public DateOnly? DATE_SUBMITTED { get; set; }
+    public DateTime? DATE_SUBMITTED { get; set; }
 
     public virtual ICollection<PERSON_QUESTIONNAIRE_ANSWER> PERSON_QUESTIONNAIRE_ANSWERs { get; set; } = new List<PERSON_QUESTIONNAIRE_ANSWER>();
 

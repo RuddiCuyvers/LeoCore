@@ -13,13 +13,16 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
 });
-builder.Services.AddDbContext<LeoDBContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("QuestionsConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("QuestionsConnection"))));
+builder.Services.AddDbContext<LeoDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("QuestionsConnection")));
 builder.Services.AddControllers();
+//builder.Services.AddGridMvc();
 
 builder.Services.AddScoped<IPersonQuestionnaireRepository, PersonQuestionnaireRepository>();
 builder.Services.AddScoped<IPersonTrainingRepository, PersonTrainingRepository>();
 builder.Services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
+builder.Services.AddScoped<IUserCodeRepository, UserCodeRepository>();
+
 
 var app = builder.Build();
 

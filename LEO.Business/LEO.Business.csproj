@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\Trainings\ITrainingSearchUseCase.cs" />
+    <Compile Remove="Mappers\Questionnaires\QuestionnaireMerger.cs" />
+    <Compile Remove="Mappers\Trainings\TrainingMapper.cs" />
+    <Compile Remove="Mappers\Trainings\TrainingMerger.cs" />
+    <Compile Remove="UseCases\IBF\IBFIdentificationUseCase.cs" />
+    <Compile Remove="UseCases\IBF\IBFSearchUseCase.cs" />
+    <Compile Remove="UseCases\Questionnaires\BasePersonQuestionnaireMaintenanceUseCase.cs" />
+    <Compile Remove="UseCases\Questionnaires\BasePersonQuestionnaireUpdateUseCase.cs" />
+    <Compile Remove="UseCases\Questionnaires\PersonQuestionnaireCreateUseCase.cs" />
+    <Compile Remove="UseCases\Questionnaires\PersonQuestionnaireUpdateUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\BaseTrainingMaintenanceUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\BaseTrainingUpdateUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\TrainingCreateUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\TrainingIdentificationUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\TrainingMaintenanceUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\TrainingSearchUseCase.cs" />
+    <Compile Remove="UseCases\Trainings\TrainingUpdateUseCase.cs" />
+    <Compile Remove="Validators\TrainingValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="BarCode" Version="2023.5.1" />
+    <PackageReference Include="IronSoftware.System.Drawing" Version="2023.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PdfDocuments.IronBarcode" Version="6.0.0" />
+    <PackageReference Include="QRCoder" Version="1.4.1" />
+    <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V2" Version="0.16.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LEO.Common\LEO.Common.csproj" />
+    <ProjectReference Include="..\LeoCore\LeoCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\Trainings\" />
+    <Folder Include="UseCases\IBF\" />
+    <Folder Include="UseCases\Trainings\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,176 @@
+﻿
+@using WGK.Lib.Security
+@using WGK.Lib.Web.Constants
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Helpers
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+@using NonFactors.Mvc.Grid;
+@using LEO.Common.Constants.Trainings
+@using LeoCore.Controllers
+@using LEO.Common.Codes
+@using LEO.Common.Literals
+@using LeoCore.Models.Trainings
+
+@model LeoCore.Models.Trainings.TrainingIdentificationViewModel
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+        @*Grid methods*@
+        function reloadGrid() {
+
+            var vForm = $(this).closest('form');
+            if (vForm.validate().form()) {
+
+                $("div.validation-summary-errors", "#@(this.Model.UniqueID)SearchForm").hide();
+                $("#ErrorMessage", "#@(this.Model.UniqueID)SearchForm").hide();
+                @* General criteria *@
+                var vTrainingTypeID = $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingTypeIDFieldName)", vForm).val();
+                var vTrainingNomenclatuur = $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingNomenclatuurFieldName)", vForm).val();
+                vTrainingEvidenceBased = $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingEVIDENCE_BASEDFieldName)", vForm).val();
+                vTrainingInternExtern= $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingINTEXTFieldName)", vForm).val();
+                vTrainingSubject = $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingSUBJECTFieldName)", vForm).val();
+                vTrainingApplicant_Client_ID = $("#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingAPPLICANT_CLIENT_IDFieldName)", vForm).val();
+
+                @*Create a json object with values from search criteria. Object attributes must match server-side properties.*@
+                var vSearchCriteria = {
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingTypeIDFieldName): vTrainingTypeID,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingNomenclatuurFieldName): vTrainingNomenclatuur,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingEVIDENCE_BASEDFieldName): vTrainingEvidenceBased,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingINTEXTFieldName): vTrainingInternExtern,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingSUBJECTFieldName): vTrainingSubject,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingAPPLICANT_CLIENT_IDFieldName): vTrainingApplicant_Client_ID,
+                        @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.StartScreenModusFieldName): false,
+                };
+
+                var vGrid$ = $('#@(this.Model.UniqueID)ResultGrid');
+                vGrid$.setGridParam({
+                    datatype: 'json',
+                    page: 1,
+                    postData: vSearchCriteria,
+                    sortorder: 'desc'
+                });
+
+                vGrid$.sortGrid('@(TrainingInfoViewModel.TrainingIDFieldName)');
+
+            } else {
+
+                $("div.validation-summary-errors", "#@(this.Model.UniqueID)SearchForm").show();
+                $("#ErrorMessage", "#@(this.Model.UniqueID)SearchForm").show();
+            }
+        }
+
+        $("#@(this.Model.UniqueID)SearchForm").keypress(function (pEvent) {
+            // if (pEvent.which == $.WGK.ButtonKeys.enterKey) { @*Trigger the form's defaultbutton when enter key is pressed*@
+            //     var vDefaultButtonID = $(this).attr("defaultbutton");
+            //     $("#" + vDefaultButtonID, this).click();
+            //     return false;
+            // }
+        });
+
+        $("#SearchButton", "#@(this.Model.UniqueID)SearchForm").click(function (pEvent) {
+            @*Reset title of search results div*@
+            $('#@(this.Model.UniqueID)SearchResultsTitle').text('@(CommonLiterals.SearchResultsDisplayName)');
+            @* Pass searchbutton on as function context (this) to reloadGrid method. *@
+            reloadGrid.call(pEvent.currentTarget);
+        });
+
+        $("#ClearButton", "#@(this.Model.UniqueID)SearchForm").click(function () {
+            @* Reset button: form fields are cleared automatically.
+                Hidden input fields, grid and error messages must be cleared manually.
+            *@
+            var vForm$ = $(this).closest('form');
+            $("#@(this.Model.UniqueID)ResultGrid").clearGridData();
+            @* Hidden field rendered by Persoon and Werknemer SelectorByDescription HtmlHelpers *@
+            $('#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingIDFieldName)', vForm$).val('');
+            $('#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingTypeIDFieldName)', vForm$).val('');
+            $('#@(TrainingIdentificationViewModel.SearchCriteriaFieldName)_@(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingNomenclatuurFieldName)', vForm$).val('');
+            @* TODO: remove css error class from individual fields *@
+            $("div.validation-summary-errors", "#@(this.Model.UniqueID)SearchForm").hide();
+            $("#ErrorMessage", "#@(this.Model.UniqueID)SearchForm").hide();
+        });
+
+    });@* END OF $(document).ready function *@
+
+
+    $(window).on('load', function () {
+        $('#@(this.Model.UniqueID)SearchResultsTitle').text('Alle lessenxx');
+        //grid view heeft onderstaande nodig
+        document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+
+        reloadGridForStartScreen();
+
+        function reloadGridForStartScreen()
+        {
+            var vTrainingApplicant_Client_ID = '@(this.Model.SearchCriteria.APPLICANT_CLIENT_ID)';
+            // var vGrid$ = $('#@(this.Model.UniqueID)ResultGrid');
+            // var vSearchCriteria = {
+            //     @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.TrainingAPPLICANT_CLIENT_IDFieldName): vTrainingApplicant_Client_ID,
+            //     @(LeoCore.Data.Models.Trainings.TrainingSearchCriteria.StartScreenModusFieldName): true
+            // };
+            // vGrid$.setGridParam({
+            //     datatype: 'json',
+            //     page: 1,
+            //     postData: vSearchCriteria,
+            //     sortorder: 'asc'
+            // });
+
+            // vGrid$.sortGrid('@(TrainingInfoViewModel.TrainingIDFieldName)');
+        }
+    });
+
+    function ajaxErrorHandler(pResponse, pStatus, pStatusText) {
+        $("#ErrorMessage", "#@(this.Model.UniqueID)SearchForm").html(
+            $.WGK.ajaxErrorHtml(pResponse, pStatus, pStatusText));
+    }
+
+</script>
+
+@*-- Form --*@
+@using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = this.Model.UniqueID + "SearchForm", defaultbutton = "SearchButton" }))
+{
+    @Html.ValidationSummary(false, CommonLiterals.ValidationSummaryTitle)
+<div class="kaart card">
+
+    @*-- Search criteria panel --*@
+
+    <h2>Filteren op</h2>
+     @*
+    @Html.Partial("IdentificationSearchCriteriaAlgemeenPartial", this.Model)
+   *@
+    <div class="btngrp">
+        @* Standard search buttons 
+         @this.Html.Partial("IdentificationButtonsPartial")*@
+    </div>
+
+        @(
+           Html.Grid(this.Model.AlleTrainings).Build(columns =>
+           {
+               columns.Add(model => model.ID).Titled("xxx");
+               columns.Add(model => model.SUBJECT).Titled("Surname");
+               columns.Add(model => model.COSTPRICE).Titled("Prijs");
+           })
+           
+           .Using(GridFilterMode.Header)
+           .Empty("No data found")
+           .Filterable()
+           .Sortable()
+           .Pageable(a=> { a.ShowPageSizes = true;a.RowsPerPage = 100; })
+
+    )
+
+
+    @*-- Searchresults datagrid --*@
+
+    <div id="@(this.Model.UniqueID)SearchResultsTitle" class="TitleLabel">
+        "Alle lessen"
+    </div>
+   
+
+
+
+   
+
+</div>
+
+}@*end form*@

@@ -20,29 +20,33 @@ namespace LeoCore.Code.Menus
                 .Items(pMenu =>
                 {
 
-                    pMenu.Add()
-                    .Text("Home")
-                    .Action<HomeController>(p => p.index());
-                    pMenu.Add()
-                          .Text(string.Format(CommonLiterals.IdentificationPageTitle, TRAININGDisplayNames.cTrainingEntityDisplayName))
-                           .Action<IBFController>(p => p.Identification("","2023",""));
-                    pMenu.Add()
-                            .Text(string.Format(CommonLiterals.IdentificationPageTitle, TRAININGDisplayNames.cTrainingEntityDisplayName))
-                          .Action<IBFController>(p => p.Identification("", "2023", "")); ;
+                    //pMenu.Add()
+                    //.Text("Home")
+                    //.Action<HomeController>(p => p.index());
 
-                      pMenu.Add()
-                                  .Text(string.Format(CommonLiterals.MaintenancePageCreateTitle, TRAININGDisplayNames.cTrainingEntityDisplayName))
-                                   .Action<IBFController>(p => p.Identification("", "2023", ""));
-
+                    //1
                     pMenu.Add()
-                          .Text("Profiel")
-                           .Action<IBFController>(p => p.Identification("", "2023", ""));
+                          .Text(string.Format("Les zoeken"))
+                          .Action<IBFController>(p => p.Identification("","2023",""));
+                    //pMenu.Add()
+                    //        .Text(string.Format(CommonLiterals.IdentificationPageTitle, TRAININGDisplayNames.cTrainingEntityDisplayName))
+                    //      .Action<IBFController>(p => p.Identification("", "2023", "")); ;
 
-
+                      //pMenu.Add()
+                      //            .Text(string.Format(CommonLiterals.MaintenancePageCreateTitle, TRAININGDisplayNames.cTrainingEntityDisplayName))
+                      //             .Action<IBFController>(p => p.Identification("", "2023", ""));
 
                     pMenu.Add()
-                   .Text("Contact")
-                   .Action<HomeController>(p => p.contact());
+                          .Text(string.Format("les maken"))
+                         .Action<TrainingsController>(p => p.Maintenance(2));
+
+                    pMenu.Add()
+                          .Text(string.Format("les maken"))
+                         .Action<TrainingsController>(p => p.Identification());
+
+                    // pMenu.Add()
+                    //.Text("Contact")
+                    //.Action<HomeController>(p => p.contact());
 
 
                 })

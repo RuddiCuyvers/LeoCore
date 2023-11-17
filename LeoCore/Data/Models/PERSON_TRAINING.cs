@@ -13,7 +13,7 @@ public partial class PERSON_TRAINING
 
     public string CLIENT_ID { get; set; }
 
-    public DateOnly? DATUM_START { get; set; }
+    public DateTime? DATUM_START { get; set; }
 
     public string COMPLETED { get; set; }
 

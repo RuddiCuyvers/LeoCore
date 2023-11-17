@@ -14,9 +14,9 @@
 
         public string INFO { get; set; }
 
-        public DateOnly DATE_VALID_START { get; set; }
+        public DateTime DATE_VALID_START { get; set; }
 
-        public DateOnly? DATE_VALID_END { get; set; }
+        public DateTime? DATE_VALID_END { get; set; }
 
         public virtual ICollection<PERSON_QUESTIONNAIRE_ANSWER> PERSON_QUESTIONNAIRE_ANSWERs { get; set; } = new List<PERSON_QUESTIONNAIRE_ANSWER>();
 

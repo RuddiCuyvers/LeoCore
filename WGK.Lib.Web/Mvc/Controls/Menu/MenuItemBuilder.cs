@@ -48,7 +48,8 @@ namespace WGK.Lib.Web.Mvc.Controls.Menu
             {
                case var s when contains.Contains("mijn ibf"):
                     substringUrl = contains.Replace("mijn ibf", "<i style='font-size:30px' class=\"fa-solid fa-graduation-cap\"></i>");
-                    return "<div class=\"Nav-Item\">" + substringUrl + Link + iMenuItemFactory.WithUl() + "</div>";
+                    string t = "<div class=\"Nav-Item\">" + substringUrl + Link + iMenuItemFactory.WithUl() + "</div>";
+                    return t;
 
                 case var s when contains.Contains("les aanmaken"):
                     substringUrl = contains.Replace("les aanmaken", "<i style='font-size:30px' class=\"fa-solid fa-plus\"></i>");
@@ -58,8 +59,12 @@ namespace WGK.Lib.Web.Mvc.Controls.Menu
                     substringUrl = contains.Replace("les zoeken", "<i style='font-size:30px' class=\"fa-solid fa-magnifying-glass\"></i>");
                     return "<div class=\"Nav-Item\">" + substringUrl +Link + iMenuItemFactory.WithUl() + "</div>";
 
-                case var s when contains.Contains("contact"):
-                    substringUrl = Link.ToString().Replace("Contact", "<i style='font-size:30px' class=\"fa-solid fa-circle-question\"></i>");
+                //case var s when contains.Contains("contact"):
+                //    substringUrl = Link.ToString().Replace("Contact", "<i style='font-size:30px' class=\"fa-solid fa-circle-question\"></i>");
+                //    return "<div class=\"Nav-Item\">" + substringUrl + Link + iMenuItemFactory.WithUl() + "</div>";
+
+                case var s when contains.Contains("les maken"):
+                    substringUrl = Link.ToString().Replace("les maken", "<i style='font-size:30px' class=\"fa-solid fa-circle-question\"></i>");
                     return "<div class=\"Nav-Item\">" + substringUrl + Link + iMenuItemFactory.WithUl() + "</div>";
 
                 case var s when contains.Contains("profiel"):

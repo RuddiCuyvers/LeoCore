@@ -17,7 +17,7 @@ public partial class PERSON_QUESTIONNAIRE_ANSWER
 
     public int? ANSWER_NUMBER { get; set; }
 
-    public DateOnly? ANSWER_DATE { get; set; }
+    public DateTime? ANSWER_DATE { get; set; }
 
     public string QTEXT_AS_WAS { get; set; }
 

@@ -15,9 +15,9 @@ public partial class TRAINING_QUESTIONNNAIRE
 
     public string INFO { get; set; }
 
-    public DateOnly DATE_VALID_START { get; set; }
+    public DateTime DATE_VALID_START { get; set; }
 
-    public DateOnly? DATE_VALID_END { get; set; }
+    public DateTime? DATE_VALID_END { get; set; }
 
     public int? TIME_LIFESPAN { get; set; }
 

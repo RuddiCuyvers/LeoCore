@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WGK.Lib.Web", "WGK.Lib.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LEO.Common", "LEO.Common\LEO.Common.csproj", "{5451A9B8-7C3F-4E77-8C5D-ABEF7F7130FF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LEO.Business", "LEO.Business\LEO.Business.csproj", "{70E1F953-6D87-4F99-A8B5-461B9205A217}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WGK.Lib", "WGK.Lib\WGK.Lib.csproj", "{F15E9BF0-A55D-478D-A192-6E17E0089C2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{5451A9B8-7C3F-4E77-8C5D-ABEF7F7130FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5451A9B8-7C3F-4E77-8C5D-ABEF7F7130FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5451A9B8-7C3F-4E77-8C5D-ABEF7F7130FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E1F953-6D87-4F99-A8B5-461B9205A217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E1F953-6D87-4F99-A8B5-461B9205A217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E1F953-6D87-4F99-A8B5-461B9205A217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E1F953-6D87-4F99-A8B5-461B9205A217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15E9BF0-A55D-478D-A192-6E17E0089C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15E9BF0-A55D-478D-A192-6E17E0089C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15E9BF0-A55D-478D-A192-6E17E0089C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15E9BF0-A55D-478D-A192-6E17E0089C2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

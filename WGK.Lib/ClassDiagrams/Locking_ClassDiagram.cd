@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WGK.Lib.Locking.LockUseCase">
+    <Position X="1.75" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAgACAAAAAAAAAAAQQAAAAAABAAAAAAAIAACA=</HashCode>
+      <FileName>Locking\LockUseCase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="iLockingRepository" />
+      <Property Name="Criteria" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WGK.Lib.Locking.UnlockUseCase">
+    <Position X="4.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAACAAAAAAAAAAAQQAAAAAABAAAAAAAIAACA=</HashCode>
+      <FileName>Locking\UnlockUseCase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="iLockingRepository" />
+      <Property Name="Criteria" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WGK.Lib.Locking.LockRepository">
+    <Position X="2" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEEAAAAABAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Locking\LockRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WGK.Lib.Locking.UnlockCriteria">
+    <Position X="4.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Locking\UnlockCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WGK.Lib.Locking.LockCriteria">
+    <Position X="2" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Locking\LockCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WGK.Lib.Locking.LockCleanupUseCase">
+    <Position X="6.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAACAAAAAAAAAAAQQAAAAAABAAAAAAAIAACA=</HashCode>
+      <FileName>Locking\LockCleanupUseCase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="iLockingRepository" />
+      <Property Name="Criteria" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WGK.Lib.Locking.LockManager">
+    <Position X="9" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Locking\LockManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="iLockRepository" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WGK.Lib.Locking.LockCleanupCriteria">
+    <Position X="6.75" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Locking\LockCleanupCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WGK.Lib.Locking.ILockRepository">
+    <Position X="4.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEEAAAAABAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Locking\ILockRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
