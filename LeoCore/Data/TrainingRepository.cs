@@ -92,6 +92,12 @@ namespace LeoCore.Data
             return vResult;
         }
 
+        public void Save()
+        {
+            this._context.SaveChanges();
+                
+        }
+
         /// <summary>
         /// Adds the specified Training to the context and mark for for creation.
         /// </summary>

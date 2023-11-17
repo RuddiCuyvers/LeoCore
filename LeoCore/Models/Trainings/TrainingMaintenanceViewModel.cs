@@ -48,7 +48,7 @@ namespace LeoCore.Models.Trainings
 
         public string Qrcode;
 
-        public string UniqueID = "hjhjhjn jnijok";
+        public string UniqueID = Guid.NewGuid().ToString();
 
 
 

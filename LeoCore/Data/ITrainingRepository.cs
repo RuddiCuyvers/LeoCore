@@ -39,6 +39,7 @@ namespace LeoCore.Data
         /// <returns></returns>
         string GetTrainingType(int pTrainingID);
 
+        void Save();
         /// <summary>
         /// Adds the specified Training to the context and mark for for creation.
         /// </summary>

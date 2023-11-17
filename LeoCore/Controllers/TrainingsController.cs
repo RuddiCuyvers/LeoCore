@@ -64,10 +64,11 @@ namespace LeoCore.Controllers
         #region Action Methods - Maintenance
 
         [HttpGet]
-        public ViewResult Maintenance(int pID)
+        public ViewResult Maintenance(int id)
         {
-            pID = 2;
-            var vViewModel = GetMaintenanceViewModel(pID);
+            
+            var vViewModel = GetMaintenanceViewModel(id);
+                    
             return this.View(vViewModel);
         }
 
@@ -113,6 +114,9 @@ namespace LeoCore.Controllers
                     TRAININGDetail = _repository.GetTRAINING(pID.Value, false, false, false)
 
                 };
+
+                vTrainingMaintenanceModel.TRAININGDetail.SUBJECT = "ggggggg";
+                _repository.Save();
 
             }
             return vTrainingMaintenanceModel; ;

@@ -10,6 +10,7 @@
 @using LEO.Common.Codes
 @using LEO.Common.Literals
 @using LeoCore.Models.Trainings
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @model LeoCore.Models.Trainings.TrainingIdentificationViewModel
 
@@ -129,37 +130,38 @@
 @*-- Form --*@
 @using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = this.Model.UniqueID + "SearchForm", defaultbutton = "SearchButton" }))
 {
-    @Html.ValidationSummary(false, CommonLiterals.ValidationSummaryTitle)
+  
 <div class="kaart card">
-
-    @*-- Search criteria panel --*@
-
-    <h2>Filteren op</h2>
-     @*
-    @Html.Partial("IdentificationSearchCriteriaAlgemeenPartial", this.Model)
-   *@
+    <h2>Traingen</h2>
+    
     <div class="btngrp">
         @* Standard search buttons 
          @this.Html.Partial("IdentificationButtonsPartial")*@
     </div>
-
+    <div>
         @(
            Html.Grid(this.Model.AlleTrainings).Build(columns =>
            {
-               columns.Add(model => model.ID).Titled("xxx");
-               columns.Add(model => model.SUBJECT).Titled("Surname");
-               columns.Add(model => model.COSTPRICE).Titled("Prijs");
-           })
+               columns.Add(model => model.TRAINING_TYPE).Titled("Soort");
+               columns.Add(model => model.SUBJECT).Titled("Onderwerp");
+               columns.Add(model => model.NOMENCL_CONV_YN).Titled("Nomencl.");
+               columns.Add(model => model.EV_YN).Titled("Evidence");
+               columns.Add(model => model.TRAINER_INT_EXT).Titled("Int./Ext.");
+               columns.Add(model => model.ID).Titled("Ref. ID.");
+               columns.Add().RenderedAs(o => Html.Raw($"<a name=\"ed\" id=\"ed\" href='/Trainings/Maintenance/"+ o.ID + "' onclick=Edit('" + o.ID + "')><img src='../images/editicon.png' height='20px' width='20px' alt='Image picture' /></a>"));
+        })
            
+           .UsingUrl("~/Trainings/Maintenance/")
+           .Named(this.Model.UniqueID + "ResultGrid")
            .Using(GridFilterMode.Header)
-           .Empty("No data found")
+           .Empty("Geen trainingen gevonden")
            .Filterable()
            .Sortable()
-           .Pageable(a=> { a.ShowPageSizes = true;a.RowsPerPage = 100; })
+           .Pageable(a=> { a.ShowPageSizes = true;a.RowsPerPage = 50; })
 
     )
 
-
+    </div>
     @*-- Searchresults datagrid --*@
 
     <div id="@(this.Model.UniqueID)SearchResultsTitle" class="TitleLabel">

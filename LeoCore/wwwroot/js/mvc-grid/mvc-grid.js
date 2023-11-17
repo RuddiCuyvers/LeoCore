@@ -285,16 +285,16 @@ MvcGrid.lang = {
         "greater-than-or-equal": "Groter of gelijk aan"
     },
     date: {
-        "equals": "Equals",
-        "not-equals": "Not equals",
-        "earlier-than": "Earlier than",
-        "later-than": "Later than",
-        "earlier-than-or-equal": "Earlier than or equal",
-        "later-than-or-equal": "Later than or equal"
+        "equals": "Gelijk aan",
+        "not-equals": "Niet gelijk aan",
+        "earlier-than": "Eerder dan",
+        "later-than": "Later dan",
+        "earlier-than-or-equal": "Eerder dan of gelijk",
+        "later-than-or-equal": "Later dan of gelijk"
     },
     guid: {
-        "equals": "Equals",
-        "not-equals": "Not equals"
+        "equals": "Gelijk aan",
+        "not-equals": "Niet gelijk aan"
     },
     filter: {
         "apply": "&#10003;",
