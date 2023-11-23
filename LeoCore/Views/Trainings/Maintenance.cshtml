@@ -4,55 +4,5 @@
 
 @model LeoCore.Models.Trainings.TrainingMaintenanceViewModel
 
-<script type="text/javascript">
+@this.Html.Partial("MaintenancePartial")
 
-    var vIsSubmitting = false;
-
-    $(document).ready(function () {
-
-    @*Form submit buttons*@
-            $('#SaveButton').click(function (pEvent) {
-             
-                submitForm.call(pEvent.currentTarget); @* Set function context (this) to the button that is clicked *@
-            });
-
-    @* -- Submit form method*@
-            function submitForm() {
-                var vSource = this;
-                submitClosestForm(vSource);
-            }
-
-        function submitAllGrids(pCallback) {
-            var vSource = this; @*the function context (this)  refers to the button that raised the submit event*@
-                submitClosestForm;
-        }
-
-    }); @* END OF $(document).ready function *@
-</script>
-@* Body section *@
-@using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = this.Model.UniqueID + "MaintenanceForm" }))
-{
-<div class="row align-items-start">
-    <div class="col-md-6">
-        @Html.Label("Volgnummer")
-        @Html.TextBoxFor(model =>  model.TRAININGDetail.ID)
-    </div>
-    <div class="col-md-6">
-        @Html.Label("Naam aanvrager")
-        @Html.TextBoxFor(pModel => pModel.TRAININGDetail.APPLICANT_CLIENTID)
-    </div>
-</div>
-<div class="kaart card btngrp">
-    <div class="buttonsdiv">
-        <input type="button"
-               value="save"
-               id="SaveButton" />
-    </div>
-    @*-- Hidden fields --*@
-    @*@Html.HiddenFor(pModel => pModel.TRAININGDetail.RowVersion)
-    @Html.HiddenFor(pModel => pModel.ActivityStatus)*@
-   
-    @*@Html.HiddenFor(pModel => pModel.ActivePanels)*@
-</div>
-
-}@*end form*@

@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using LEO.Common.Codes;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LeoCore.Data
 {
@@ -82,7 +85,7 @@ namespace LeoCore.Data
             {
                 // Filter UserCodes that are not soft deleted
                 vQuery = vQuery
-                    .Where(p => !(p.SOFTDELETED == "0"));
+                    .Where(p => (p.SOFTDELETED == "0"));
             }
 
             if (!String.IsNullOrEmpty(pDependencyCode))
@@ -105,6 +108,29 @@ namespace LeoCore.Data
 
            
             return vResult;
+        }
+
+
+        public List<SelectListItem> GetLISTITEMSLISTUserCodesForUserCodeGroup(
+            string pUserCodeGroupID,
+            bool pAddBlankCode = true,
+            bool pIncludeSoftDeleted = true)
+        {
+            var a = new List<SelectListItem>();
+            var mlijst = GetUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
+            if (mlijst != null)
+            {
+                
+                int i = 0;
+                foreach (var m in mlijst)
+                {
+                    a.Insert(i, (new SelectListItem { Text = m.DESCRIPTION, Value = m.USERCODEID }));
+                    i++;
+                };
+            };
+            return a;
+
+
         }
 
         //public List<USERCODE> GetUserCodesForListUserCodeGroup(
@@ -156,46 +182,49 @@ namespace LeoCore.Data
         //    return vResult;
         //}
 
-        //public UserCode GetUserCode(
-        //    string pUserCodeID,
-        //    string pUserCodeGroupID)
-        //{
-        //    if (pUserCodeGroupID.IsNullOrEmptyOrBlankCode())
-        //    {
-        //        throw new ParameterMissingException(UserCodeLiterals.UserCodeGroupIDDisplayName);
-        //    }
+        public USERCODE GetUserCode(
+            string pUserCodeID,
+            string pUserCodeGroupID)
+        {
+            
+            USERCODE WantedUSERCODE =  _context.USERCODE
+                .Where(p => p.USERCODEID == pUserCodeID
+                        &&  p.USERCODEGROUPID == pUserCodeGroupID).FirstOrDefault();
+            return WantedUSERCODE;
 
-        //    if (pUserCodeID.IsNullOrEmptyOrBlankCode())
-        //    {
-        //        throw new ParameterMissingException(UserCodeLiterals.UserCodeIDDisplayName);
-        //    }
 
-        //    // For improved performance we return the original cached UserCode instance
-        //    return this.iUserCodeCache
-        //        .FirstOrDefault(p =>
-        //            p.UserCodeID == pUserCodeID
-        //                && p.UserCodeGroupID == pUserCodeGroupID);
-        //}
+        }
 
-    
-        //public string GetUserCodeDescription(
-        //    string pUserCodeID,
-        //    string pUserCodeGroupID)
-        //{
-        //    UserCode vUserCode = this.GetUserCode(pUserCodeID, pUserCodeGroupID);
-        //    if (vUserCode == null)
-        //    {
-        //        return null;
-        //    }
-        //    return vUserCode.Description;
-        //}
 
-      
-       
+        public string GetUserCodeDescription(
+            string pUserCodeID,
+            string pUserCodeGroupID)
+        {
+            if(pUserCodeID.IsNullOrEmpty() || pUserCodeID.Trim().IsNullOrEmpty())
+            {
 
-       
+                return "";
+            }
+            if (pUserCodeGroupID.IsNullOrEmpty() || pUserCodeGroupID.Trim().IsNullOrEmpty())
+            {
 
-       
+                return "";
+            }
+
+            USERCODE vUserCode = this.GetUserCode(pUserCodeID, pUserCodeGroupID);
+            if (vUserCode == null)
+            {
+                return "";
+            }
+            return vUserCode.DESCRIPTION;
+        }
+
+
+
+
+
+
+
 
     }
 }

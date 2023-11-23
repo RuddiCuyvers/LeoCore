@@ -1,0 +1,413 @@
+﻿@using LEO.Common.Codes
+@using LEO.Common.Constants.Trainings
+@using LEO.Common.Literals
+
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@model LeoCore.Models.Trainings.TrainingMaintenanceViewModel
+
+
+
+@*Accordion that contains the content*@
+<div class="accordion" id="AcordionEvidenceBased">
+    @*accordion Item Evidence Bases*@
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="EvidenceBased">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvidenceBased" aria-expanded="true" aria-controls="collapseEvidenceBased">
+                Evidence Based
+            </button>
+        </h2>
+        <div id="collapseEvidenceBased" class="accordion-collapse collapse" aria-labelledby="headingEvidenceBased" data-bs-parent="#Acordion">
+            @*Content of the accordion item*@
+            <div class="accordion-body">
+                 <div class="row align-items-start EvidenceBased">
+                    <div class="col">
+                        <h4>Evidence based training</h4>
+                    </div>
+                    <div class="col">
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="EBTSwitch">
+                            <h4 class="form-check-label" for="EBTSwitch">Is deze vorming evidence based?</h4>
+                        </div>
+                     @*    @this.Html.WGKUserCodeDropDownListFor(
+                                                 pModel => pModel.TRAININGDetail.EV_YN,
+                                                 pModel => pModel.UserCodeManager,
+                                                 UserCodeGroupCode.cJaNeeLijst,
+                                                 false, // pAddBlankCode
+                                                 null,
+                                                 null, // pParentUserCodeID
+                                                 null,  //Hide if readOnly
+                                                 false, // pIncludeSoftDeleted
+                                                 new { style = "" },
+                                                 ActivityStatusEnablementEnum.EditInsert) *@
+                    </div>
+                    <div id="WCHDV" class="WCHDVC">
+
+                        <cite>Opgebruikte uren:</cite>
+                        <div id="myProgress2">
+                            <div id="myBar2"></div>
+                        </div>
+                        <div class="col">
+                            <h5><strong>Welke categorie heeft de vorming ?</strong></h5>
+                        </div>
+                        <div class="container">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <h4>Zorg gerelateerd</h4>
+                                </div>
+                                <div class="col"></div>
+                                <div class="col">
+                                   @*  @this.Html.WGKUserCodeDropDownListFor(
+                                               pModel => pModel.TRAININGDetail.EV_ZG_YN,
+                                               pModel => pModel.UserCodeManager,
+                                               UserCodeGroupCode.cJaNeeLijst,
+                                               false, // pAddBlankCode
+                                               null,
+                                               null, // pParentUserCodeID
+                                               null,  //Hide if readOnly
+                                               false, // pIncludeSoftDeleted
+                                               new { style = "" },
+                                               ActivityStatusEnablementEnum.EditInsert) *@
+                                </div>
+                            </div>
+                            <div id="ZGDT" class="ZGDT">
+                                <div class="row align-items-start">
+                                    <div class="col"></div>
+                                    <div class="col"><h4>Duurtijd:</h4></div>
+                                    <div class="col">
+                                   @*      @Html.TextBoxFor(
+      pModel => pModel.TRAININGDetail.EV_ZG_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+                                  
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-start">
+                                <div class="col">
+
+                                    <h4>Warme welkom dag</h4>
+                                   
+                                   @*  @this.Html.CheckBoxFor(pModel => pModel.TRAININGDetail.EV_WW_YN ) *@
+                                </div>
+
+                                <div class="col"> <h4>Duurtijd:</h4></div>
+                                <div class="col">
+                                 @*    @Html.TextBoxFor(
+   pModel => pModel.TRAININGDetail.EV_WW_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+                               
+                                </div>
+                            </div>
+
+                            <div class="row align-items-start">
+                                <div class="col">
+
+                                    <h4>AWS-Box</h4>
+                                    @*@this.Html.WGKCheckBoxFor(
+                                            pModel => pModel.TRAININGDetail.EV_AWS_YN,
+                                            pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                                            pCustomEnablementKey: null
+                                        )*@
+                                </div>
+                                <div class="col"> <h4>Duurtijd:</h4></div>
+                                <div class="col">
+@*                                     @Html.TextBoxFor(
+ pModel => pModel.TRAININGDetail.EV_AWS_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+
+                                </div>
+                            </div>
+                            <div class="row align-items-start">
+                                <div class="col">
+
+                                    <h4>Personeel gerelateerd</h4>
+                          @*           @this.Html.CheckBoxFor(pModel => pModel.TRAININGDetail.EV_PERS_YN) *@
+                                </div>
+                                <div class="col"> <h4>Duurtijd:</h4></div>
+                                <div class="col">
+                                   @*  @Html.TextBoxFor(
+  pModel => pModel.TRAININGDetail.EV_PERS_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+                                 
+                                </div>
+                            </div>
+
+                            <div class="row align-items-start">
+                                <div class="col">
+
+                                   @*  <h4>Anders</h4>
+                                    @this.Html.WGKCheckBoxFor(
+                    pModel => pModel.TRAININGDetail.EV_ANDERS_YN,
+                    pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                    pCustomEnablementKey: null
+                                    ) *@
+                                </div>
+                                <div class="col"> <h4>Duurtijd:</h4></div>
+                                <div class="col">
+    @*                                 @Html.TextBoxFor(
+ pModel => pModel.TRAININGDetail.EV_ANDERS_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", 
+                 
+                 },
+                ActivityStatusEnablementEnum.EditInsert) *@
+                                 
+                                </div>
+                            </div>
+                            <div class="row align-items-start">
+                                <div class="col"> </div>
+                                <div class="col"><h4>Specifieer:</h4></div>
+                                <div class="col">
+
+                                    @Html.TextBoxFor(
+                               pModel => pModel.TRAININGDetail.EV_ANDERS_FT)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*First accordion Item Zorg gerelateerd*@
+    <div class="accordion-item colapseZG">
+        <h2 class="accordion-header" id="ZorgGerelateerd">
+            <button class="accordion-button colapseZG" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZorgGerelateerd" aria-expanded="true" aria-controls="collapseZorgGerelateerd">
+                Zorg gerelateerd
+            </button>
+        </h2>
+        <div id="collapseZorgGerelateerd" class="accordion-collapse collapse colapseZG" aria-labelledby="headingZorgGerelateerd" data-bs-parent="#Acordion">
+            @*Content of the accordion item*@
+            <div class="accordion-body">
+                <div class="row align-items-start">
+
+                    <h4>Specifificeer het onderwerp</h4>
+                </div>
+                <div class="row align-items-stretch" style="padding:10px;">
+
+@*                     @this.Html.WGKUserCodeCheckBoxListFor(
+            pModel => pModel.TRAININGDetail.EV_ZG_SUBJ,
+            pModel => pModel.UserCodeManager,
+            UserCodeGroupCode.cZG_SUBJLijst,
+            pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+            pCustomEnablementKey: null,
+            pHtmlAttributes: (object)null,
+            pIncludeSoftDeleted: false,
+            pDefaultValue: null,
+            pParentUserCodeID: null,
+            pDependencyCode: null) *@
+                </div>
+
+                <div id="EVZGSRD" class="EVZGSRD">
+                    <div class="row align-items-start" style="margin-top:10px;">
+
+                        <h4>Specifieer referentiedomein</h4>
+                    </div>
+                    <div class="row align-items-stretch" style="padding:10px;">
+
+                    @*     @this.Html.WGKUserCodeCheckBoxListFor(
+                       pModel => pModel.TRAININGDetail.EV_ZG_REFDOM,
+                       pModel => pModel.UserCodeManager,
+                       UserCodeGroupCode.cZG_REF_DOMLijst,
+                       pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                       pCustomEnablementKey: null,
+                       pHtmlAttributes: (object)null,
+                       pIncludeSoftDeleted: false,
+                       pDefaultValue: null,
+                       pParentUserCodeID: null,
+                       pDependencyCode: null) *@
+                    </div>
+                </div>
+                <div class="row align-items-start">
+                </div>
+                <div id="EVZGSCOMPL" class="EVZGSCOMPL">
+                    <div class="row align-items-start" style="margin-top:10px;">
+
+                        <h4>complementaire diensten</h4>
+                    </div>
+                    <div class="row align-items-stretch" style="padding:10px;">
+
+                   @*      @this.Html.WGKUserCodeCheckBoxListFor(
+                       pModel => pModel.TRAININGDetail.EV_ZG_COMPL,
+                       pModel => pModel.UserCodeManager,
+                       UserCodeGroupCode.cZG_COMPL_DIENSTLijst,
+                       pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                       pCustomEnablementKey: null,
+                       pHtmlAttributes: (object)null,
+                       pIncludeSoftDeleted: false,
+                      
+                       pDefaultValue: null,
+                       pParentUserCodeID: null,
+                       pDependencyCode: null) *@
+                    </div>
+                </div>
+
+                <div class="row align-items-start" style="margin-top:10px;">
+                    <div class="col"><h4>Geef een omschrijving</h4></div>
+                    <div class="col">
+
+                        <input class="form-control" placeholder="VOORBEELD INPUT BOX NOG PROGRAMMEREN !!!!!" disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*First accordion Item AWS-Box*@
+    <div class="accordion-item colapseAWSB">
+        <h2 class="accordion-header" id="AWSBOX">
+            <button class="accordion-button colapse colapseAWS" type="button" data-bs-toggle="collapse" data-bs-target="#colapseAWS" aria-expanded="true" aria-controls="colapseAWS">
+                AWS-Box
+            </button>
+        </h2>
+        <div id="colapseAWS" class="accordion-collapse collapse colapseAWS" aria-labelledby="headingAWS" data-bs-parent="#Acordion">
+            @*Content of the accordion item*@
+            <div class="accordion-body AWSBOX">
+                <h3>AWS-Box</h3>
+                <div class="row align-items-start" style="margin-top:10px;">
+
+                    <h4>selecteer het juiste onderwerp</h4>
+                </div>
+                <div class="row align-items-start" style="margin-top:10px;">
+
+@*                     @this.Html.WGKUserCodeCheckBoxListFor(
+        pModel => pModel.TRAININGDetail.EV_AWS_SUBJ,
+        pModel => pModel.UserCodeManager,
+        UserCodeGroupCode.cAWS_SUBJLijst,
+        pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+        pCustomEnablementKey: null,
+        pHtmlAttributes: (object)null,
+        pIncludeSoftDeleted: false,
+        pDefaultValue: null,
+        pParentUserCodeID: null,
+        pDependencyCode: null) *@
+                </div>
+
+                <div id="OPP" class="OPP">
+                    <div class="row align-items-start" style="margin-top:10px;">
+                        <h4>selecteer het juiste onderwerp voor onco, pijn & palliatieve  </h4>
+                    </div>
+                    <div class="row align-items-start">
+
+@*                         @this.Html.WGKUserCodeCheckBoxListFor(
+            pModel => pModel.TRAININGDetail.EV_AWS_ONCO_SUBJ,
+            pModel => pModel.UserCodeManager,
+            UserCodeGroupCode.cAWS_ONCO_SUBJLijst,
+            pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+            pCustomEnablementKey: null,
+            pHtmlAttributes: (object)null,
+            pIncludeSoftDeleted: false,
+            pDefaultValue: null,
+            pParentUserCodeID: null,
+            pDependencyCode: null) *@
+                    </div>
+                </div>
+
+                <div id="ICC" class="ICC">
+                    <div class="row align-items-start" style="margin-top:10px;">
+                        <h4>selecteer het juiste onderwerp voor incontinentie</h4>
+                    </div>
+                    <div class="row align-items-start" ;">
+
+                      @*   @this.Html.WGKUserCodeCheckBoxListFor(
+            pModel => pModel.TRAININGDetail.EV_AWS_INCO_SUBJ,
+            pModel => pModel.UserCodeManager,
+            UserCodeGroupCode.cAWS_INCO_SUBJLijst,
+            pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+            pCustomEnablementKey: null,
+            pHtmlAttributes: (object)null,
+            pIncludeSoftDeleted: false,
+           
+            pDefaultValue: null,
+            pParentUserCodeID: null,
+            pDependencyCode: null) *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*First accordion Item Evidence Bases*@
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="Opmerking">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOpmerking" aria-expanded="true" aria-controls="collapseOpmerking">
+                Opmerkingen
+            </button>
+        </h2>
+        <div id="collapseOpmerking" class="accordion-collapse collapse" aria-labelledby="headingOpmerking" data-bs-parent="#Acordion">
+            @*Content of accordion item*@
+         
+            <div class="accordion-body">
+                <div class="row align-items-start">
+                    <div class="col">
+                        <h4>Bijbehorende vragenlijst</h4>
+                    </div>
+                   @* <div class="col">
+                        @this.Html.WGKDropDownListFor(pModel => pModel.GekoppeldeQuestionnaire.QUESTIONNAIRE_ID,
+                            this.Model.VragenLijstLijstje,
+                            ActivityStatusEnablementEnum.EditInsert)
+                    </div>*@
+                    <div class="col"></div>
+                </div>
+
+                <div class="row align-items-start">
+                    <div class="col">
+                        <h4>Locatie van de vorming:</h4>
+                    </div>
+                    <div class="col">
+                     @*    @this.Html.WGKUserCodeDropDownListFor(
+                      pModel => pModel.TRAININGDetail.LOCATION,
+                      pModel => pModel.UserCodeManager,
+                      UserCodeGroupCode.cLOCATIELijst,
+                      true, // pAddBlankCode
+                      null,
+                      null, // pParentUserCodeID
+                      null,  //Hide if readOnly
+                      false, // pIncludeSoftDeleted
+                      new { },
+                      ActivityStatusEnablementEnum.EditInsert
+                     ) *@
+
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div id="LocAndersSP" class="row align-items-start">
+                    <div class="col">
+                        <h4>Specifieer: </h4>
+                    </div>
+                    <div class="col">
+                        @Html.TextBoxFor(pModel => pModel.TRAININGDetail.LOCATION_ANDERS, ActivityStatusEnablementEnum.EditInsert)
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row align-items-start">
+                    <div class="col">
+                        <h4>Kostprijs: </h4>
+                    </div>
+                    <div class="col">
+                        @Html.TextBoxFor(pModel => pModel.TRAININGDetail.COSTPRICE)
+                    </div>
+                    <div class="col"><h4>Euro</h4></div>
+                </div>
+
+                <div class="row align-items-start">
+                    <div class="col">
+                        @Html.LabelFor(pModel => pModel.TRAININGDetail.QR)
+                    </div>
+                    <div class="col">
+                        <a href="@Url.Action("Maintenance", "Questionnaires", new { pID = this.Model.TRAININGDetail.ID, pIsLeraar=false })">
+                            <img src=@this.Model.Qrcode height="200" width="200">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            </div>
+           
+    </div>
+</div>

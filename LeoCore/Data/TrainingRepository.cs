@@ -54,14 +54,15 @@ namespace LeoCore.Data
         /// <param name="pNoTracking">Set to true to fetch Training without tracking.</param>
         /// <returns></returns>
         public TRAINING GetTRAINING(
-            int pID,
+            int? pID,
             bool pIncludeSoftDeleted = false,
             bool pIncludeAllData = false,
             bool pNoTracking = false)
         {
             // -- Fetch Training row
-            var vTrainingQuery = this._context.TRAINING
-                .Where(p => (p.ID == pID)).Include(p => p.TRAINING_QUESTIONNNAIREs);
+            TRAINING vTrainingQuery =  this._context.TRAINING
+                .Include(p => p.TRAINING_QUESTIONNNAIREs)
+                .FirstOrDefaultAsync(p => (p.ID == pID)).Result;
 
             if (!pIncludeSoftDeleted)
             {
@@ -70,7 +71,7 @@ namespace LeoCore.Data
             }
 
             // Execute the query
-            TRAINING vTraining = vTrainingQuery.FirstOrDefault();
+            TRAINING vTraining = vTrainingQuery;
 
 
             return vTraining;
@@ -94,7 +95,7 @@ namespace LeoCore.Data
 
         public void Save()
         {
-            this._context.SaveChanges();
+            var a = this._context.SaveChangesAsync().Result;
                 
         }
 

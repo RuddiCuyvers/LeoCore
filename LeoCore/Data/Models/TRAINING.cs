@@ -2,6 +2,8 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace LeoCore.Data.Models;
 
@@ -10,6 +12,7 @@ namespace LeoCore.Data.Models;
 /// </summary>
 public partial class TRAINING
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
     public int ID { get; set; }
 
     public byte[] QR { get; set; }

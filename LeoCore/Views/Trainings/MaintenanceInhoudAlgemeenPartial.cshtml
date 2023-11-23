@@ -1,0 +1,357 @@
+﻿
+@using LEO.Common.Codes
+@using LEO.Common.Constants.Trainings
+@using LEO.Common.Literals
+
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@model LeoCore.Models.Trainings.TrainingMaintenanceViewModel
+
+@section scripts{
+    <script src="~/Scripts/Logic.js"></script>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });@* END OF $(document).ready function *@
+
+// }); remove
+</script>
+
+@*DataList fixed times*@
+<datalist id="limittimeslist">
+    <option value="00:00"></option>
+    <option value="00:15"></option>
+    <option value="00:30"></option>
+    <option value="00:45"></option>
+    <option value="01:00"></option>
+    <option value="01:15"></option>
+    <option value="01:30"></option>
+    <option value="01:45"></option>
+    <option value="02:00"></option>
+    <option value="02:15"></option>
+    <option value="02:30"></option>
+    <option value="02:45"></option>
+    <option value="03:00"></option>
+    <option value="03:15"></option>
+    <option value="03:30"></option>
+    <option value="03:45"></option>
+    <option value="04:00"></option>
+    <option value="04:15"></option>
+    <option value="04:30"></option>
+    <option value="04:45"></option>
+    <option value="05:00"></option>
+    <option value="05:15"></option>
+    <option value="05:45"></option>
+    <option value="06:00"></option>
+    <option value="06:15"></option>
+    <option value="06:30"></option>
+    <option value="06:45"></option>
+    <option value="07:00"></option>
+    <option value="07:15"></option>
+    <option value="07:30"></option>
+    <option value="07:45"></option>
+</datalist>
+
+<div class="accordion" id="accordionInhoud1">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="AIAlgemeen">
+            <button class="accordion-button collapseAlg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAIAlgemeen" aria-expanded="true" aria-controls="collapseAIAlgemeen">
+                Algemeen
+            </button>
+        </h2>
+        <div id="collapseAIAlgemeen" class="accordion-collapse collapse show" aria-labelledby="headingAIAlgemeen" data-bs-parent="#Acordion">
+            <div class="accordion-body">
+                <div class="row align-items-start">
+                    <div class="col"> <h4> @Html.Label(TRAININGDisplayNames.cSUBJECTDisplayName):</h4></div>
+                    <div class="col">
+                        @Html.TextBoxFor(
+                        pModel => pModel.TRAININGDetail.SUBJECT,
+                             ActivityStatusEnablementEnum.EditInsert)
+                    </div>
+                </div>
+                <div class="row align-items-start">
+                    <div class="col"> <h4>@Html.Label(TRAININGDisplayNames.cMETHODOLOGYDisplayName):</h4></div>
+                    <div class="col">
+
+                       @Html.DropDownListFor(
+                                     pModel => pModel.TRAININGDetail.METHODOLOGY,
+                                     Model.cMETHODOLOGYLijst, "", null
+                                    )
+                    </div>
+                </div>
+                <div class="row align-items-start">
+                    <div class="col"> <h4>@Html.Label(TRAININGDisplayNames.cTRAINING_TYPEDisplayName):</h4></div>
+                    <div class="col">
+
+                      @*  @this.Html.WGKUserCodeDropDownListFor(
+                                     pModel => pModel.TRAININGDetail.TRAINING_TYPE,
+                                     pModel => pModel.UserCodeManager,
+                                     UserCodeGroupCode.cTypeTrainingLijst,
+                                     true, // pAddBlankCode
+                                     null,
+                                     null, // pParentUserCodeID
+                                     null,  //Hide if readOnly
+                                     false, // pIncludeSoftDeleted
+                                     new { style = "" },
+                                     ActivityStatusEnablementEnum.EditInsert
+                                    )*@
+                    </div>
+                </div>
+                <div class="row align-items-start">
+                    <div class="col"> <h4>@Html.Label(TRAININGDisplayNames.cDURATION_OVERALLDisplayName):</h4></div>
+                    <div class="col">
+
+         @*                @Html.TextBoxFor(
+                                pModel => pModel.TRAININGDetail.DURATION_OVERALL,
+                                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                                ActivityStatusEnablementEnum.EditInsert) *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="AlgemeenLesGever">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLesGever" aria-expanded="true" aria-controls="collapseLesGever">
+                Lesgever
+            </button>
+        </h2>
+        <div id="collapseLesGever" class="accordion-collapse collapse" aria-labelledby="headingLesGever" data-bs-parent="#Acordion">
+            <div class="accordion-body">
+                <div class="row align-items-start">
+                    <div class="col"> <h4>Intern of externe lesgever?</h4></div>
+                    <div class="col">
+                       @* @this.Html.WGKUserCodeDropDownListFor(
+                              pModel => pModel.TRAININGDetail.TRAINER_INT_EXT,
+                              pModel => pModel.UserCodeManager,
+                              UserCodeGroupCode.cEXT_INTLijst,
+                              true, // pAddBlankCode
+                              null,
+                              null, // pParentUserCodeID
+                              null,  //Hide if readOnly
+                              false, // pIncludeSoftDeleted
+                              new { style = "" },
+                              ActivityStatusEnablementEnum.EditInsert)*@
+                    </div>
+                </div>
+                <div class="row align-items-start">
+                    <div id="TRAINER_INT_EXT_MAIL">
+                        <div class="col"><h4>Emailadres lesgever:</h4></div>
+
+                        <div class="col">
+                            @Html.TextBoxFor(
+                                  pModel => pModel.TRAININGDetail.TRAINER_EMAIL,
+                                  ActivityStatusEnablementEnum.EditInsert)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="AlgemeenNOCG">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNOCG" aria-expanded="true" aria-controls="collapseNOCG">
+                Nomenclatuur of conventie gerelateerd?
+            </button>
+        </h2>
+        <div id="collapseNOCG" class="accordion-collapse collapse " aria-labelledby="headingNOCG" data-bs-parent="#Acordion">
+            <div class="accordion-body">
+
+
+                <div class="container text-left">
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <h4>Nomenclatuur of Conventie</h4>
+                        </div>
+
+                        <div class="col">
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="NCCGSwitch">
+                                <h4 class="form-check-label" for="NCCGSwitch">Valt de vorming onder nomenclatuur en conventie gerelateerd ?</h4>
+                            </div>
+
+                         @*   @this.Html.WGKUserCodeDropDownListFor(
+                                                     pModel => pModel.TRAININGDetail.NOMENCL_CONV_YN,
+                                                     pModel => pModel.UserCodeManager,
+                                                     UserCodeGroupCode.cJaNeeLijst,
+                                                     false, // pAddBlankCode
+                                                     null,
+                                                     null, // pParentUserCodeID
+                                                     null,  //Hide if readOnly
+                                                     false, // pIncludeSoftDeleted
+                                                     new { style = "" },
+                                                     ActivityStatusEnablementEnum.EditInsert)*@
+                        </div>
+                    </div>
+                </div>
+                <div id="NCoCG" class="NCoCGC">
+                    <cite>Opgebruikte uren:</cite>
+                    <div id="myProgress">
+                        <div id="myBar"></div>
+                    </div>
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+
+                            <div class="col">
+                                <h4>EVD opleiding over gebruik(correcte inhoud - scoren, aanbod, …)</h4>
+                             @*   @this.Html.WGKCheckBoxFor(
+                                                     pModel => pModel.TRAININGDetail.NC_EVD_YN,
+                                                     pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                                                     pCustomEnablementKey: null
+
+                                                 )*@
+                            </div>
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(
+                                                   pModel => pModel.TRAININGDetail.NC_EVD_SUBJECT,
+                                                   ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+
+                             @*    @Html.TextBoxFor(
+                              pModel => pModel.TRAININGDetail.NC_EVD_DURATION,
+                                new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                               ActivityStatusEnablementEnum.EditInsert) *@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <h4>KATZ-richtlijnen</h4>
+                             @*   @this.Html.WGKCheckBoxFor(
+                                            pModel => pModel.TRAININGDetail.NC_KATZ_YN,
+                                            pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                                            pCustomEnablementKey: null
+                                        )*@
+                            </div>
+
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(
+                                        pModel => pModel.TRAININGDetail.NC_KATZ_SUBJECT,
+                                        ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+                               @*  @Html.WGKTextBoxFor(
+                      pModel => pModel.TRAININGDetail.NC_KATZ_DURATION,
+                       new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                      ActivityStatusEnablementEnum.EditInsert) *@
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <h4>Nomenclatuur</h4>
+                       @*          @this.Html.CheckBoxFor(pModel => pModel.TRAININGDetail.NC_NOMC_YN) *@
+                            </div>
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(
+                                             pModel => pModel.TRAININGDetail.NC_NOMC_SUBJ,
+                                             ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+                               @*  @Html.TextBoxFor(
+    pModel => pModel.TRAININGDetail.NC_NOMC_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <h4>
+                                    Zorgkundigen en verpleegkundigen in de thuiszorg
+                                </h4>
+                            @*    @this.Html.WGKCheckBoxFor(
+                                         pModel => pModel.TRAININGDetail.NC_THUISZORG_YN,
+                                         pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                                         pCustomEnablementKey: null
+                                     )*@
+                            </div>
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(
+                                            pModel => pModel.TRAININGDetail.NC_THUISZORG_SUBJECT,
+                                            ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+                              @*   @Html.TextBoxFor(
+    pModel => pModel.TRAININGDetail.NC_THUISZORG_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <h4>Verpleegproces - verpleegdiagnostiek - dossieropbouw</h4>
+                           @*      @this.Html.CheckBoxFor(pModel => pModel.TRAININGDetail.NC_VVD_YN) *@
+                            </div>
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(pModel => pModel.TRAININGDetail.NC_VVD_SUBJECT,  ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+                              @*   @Html.TextBoxFor(pModel => pModel.TRAININGDetail.NC_VVD_DURATION, new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <h4>Regionaal Overleg Leidinggevenden</h4>
+                             @*   @this.Html.WGKCheckBoxFor(
+                                              pModel => pModel.TRAININGDetail.NC_ROL_YN,
+                                              pStatusEnablement: ActivityStatusEnablementEnum.EditInsert,
+                                              pCustomEnablementKey: null
+                                          )*@
+                            </div>
+                            <div class="col">
+                                <h4>Onderwerp:</h4>
+                                @Html.TextBoxFor(
+                                          pModel => pModel.TRAININGDetail.NC_ROL_SUBJECT,
+                                          ActivityStatusEnablementEnum.EditInsert)
+                            </div>
+                            <div class="col">
+                                <h4>Duurtijd:</h4>
+                             @*    @Html.TextBoxFor(
+    pModel => pModel.TRAININGDetail.NC_ROL_DURATION,
+                 new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
+                ActivityStatusEnablementEnum.EditInsert) *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

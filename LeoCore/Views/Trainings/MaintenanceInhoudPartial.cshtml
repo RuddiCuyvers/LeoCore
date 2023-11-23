@@ -1,0 +1,18 @@
+﻿@using System.Globalization
+@using WGK.Lib.Security
+@using WGK.Lib.Web.Constants
+@using WGK.Lib.Web.Mvc.Helpers
+@using LEO.Common.Codes
+@using LEO.Common.Constants.Trainings
+@using LEO.Common.Literals
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@model LeoCore.Models.Trainings.TrainingMaintenanceViewModel
+
+
+@*First 3 accordions*@
+@Html.Partial("MaintenanceInhoudAlgemeenPartial", this.Model)
+@*last accordions*@
+@Html.Partial("MaintenanceInhoudOpmerkingenPartial", this.Model)

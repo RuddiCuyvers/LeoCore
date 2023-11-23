@@ -27,7 +27,7 @@ namespace LeoCore.Data
         /// <param name="pNoTracking">Set to true to fetch Training without tracking.</param>
         /// <returns></returns>
         TRAINING GetTRAINING(
-            int pID,
+            int? pID,
             bool pIncludeSoftDeleted = false,
             bool pIncludeAllData = false,
             bool pNoTracking = false);

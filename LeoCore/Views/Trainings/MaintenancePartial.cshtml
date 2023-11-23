@@ -1,0 +1,78 @@
+﻿@using System.Globalization
+@using WGK.Lib.Security
+@using WGK.Lib.Web.Constants
+@using WGK.Lib.Web.Mvc.Helpers
+@using LEO.Common.Codes
+@using LEO.Common.Constants.Trainings
+@using LEO.Common.Literals
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@model LeoCore.Models.Trainings.TrainingMaintenanceViewModel
+
+@{
+    // Uncommented in order to disable client-side validation for this View so we get no different behavior
+    // between client-side and server-side validation
+   // Html.EnableClientValidation(false);
+   // Html.EnableUnobtrusiveJavaScript(false);
+}
+
+<script type="text/javascript">
+
+    var vIsSubmitting = false;
+
+    $(document).ready(function () {
+
+    @*Form submit buttons*@
+            $('#SaveButton').click(function (pEvent) {
+
+                submitForm.call(pEvent.currentTarget); @* Set function context (this) to the button that is clicked *@
+                });
+
+    @* -- Submit form method*@
+            function submitForm() {
+                var vSource = this;
+                submitClosestForm(vSource);
+            }
+
+        function submitAllGrids(pCallback) {
+            var vSource = this; @*the function context (this)  refers to the button that raised the submit event*@
+                submitClosestForm;
+        }
+
+    }); @* END OF $(document).ready function *@
+
+
+
+</script>
+
+
+@using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = this.Model.UniqueID + "MaintenanceForm" }))
+{
+
+@*Card for showing details about the training *@
+<div class="kaart card">
+     @Html.Partial("MaintenanceDetailPartial", this.Model)
+</div>
+
+@*Card for showing the fiels of the trainingDiscriptionForm*@
+<div class="kaart card">
+   @Html.Partial("MaintenanceInhoudPartial")
+</div>
+
+@*-- Footer buttons--*@
+<div class="kaart card btngrp">
+        <div class="buttonsdiv">
+            <input type="button"
+                   value="save"
+                   id="SaveButton" />
+        </div>
+    @*-- Hidden fields --*@
+    @*@Html.HiddenFor(pModel => pModel.TRAININGDetail.RowVersion)
+    @Html.HiddenFor(pModel => pModel.ActivityStatus)*@
+    @Html.HiddenFor(pModel => pModel.TRAININGDetail.ID)
+    @*@Html.HiddenFor(pModel => pModel.ActivePanels)*@
+    @*end form*@
+</div>
+}

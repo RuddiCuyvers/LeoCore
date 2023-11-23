@@ -1,9 +1,14 @@
+using LEO.Web.Code.Mappers.IBF;
+using LEO.Web.Code.Mappers.Trainings;
 using LeoCore.Data;
+using LeoCore.Models.Trainings;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(Program));
+
+//
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,8 +28,8 @@ builder.Services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
 builder.Services.AddScoped<IUserCodeRepository, UserCodeRepository>();
 
-
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

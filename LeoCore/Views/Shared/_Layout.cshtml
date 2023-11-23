@@ -54,24 +54,20 @@
     <link href="@this.Url.Content("~/Content/jquery.timeentry.css")" rel="stylesheet" type="text/css" />
 
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-      @*   <link rel="stylesheet" href="~/css/site.css" /> *@
-        <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
-    </environment>
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-       
-        <script>
-            [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
-                new MvcGrid(element);
-            });
-        </script>
-       @*  <script src="~/js/site.js" asp-append-version="true"></script> *@
-    </environment>
-  @*   <link href="@this.Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" /> *@
-   
+
+  @*   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> *@
+    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script>
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+            new MvcGrid(element);
+        });
+
+
+    </script>
+
     <link href="@this.Url.Content("~/Content/StandardSite.css?" + vVersion)" rel="stylesheet" type="text/css" />
     <link href="@this.Url.Content("~/Content/menu/wgk.menuStandard.css")" rel="stylesheet" type="text/css" />
 
@@ -130,7 +126,7 @@
   
     <link href="~/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/css/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
-    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
+
 
    
    @*  <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" /> *@

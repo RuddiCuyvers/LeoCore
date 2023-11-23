@@ -1,4 +1,6 @@
 ﻿using LeoCore.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -19,16 +21,19 @@ namespace LeoCore.Data
             string pDependencyCode = null,
             IEnumerable<string> pUserCodeIDs = null);
 
-       
+        public List<SelectListItem> GetLISTITEMSLISTUserCodesForUserCodeGroup(string pUserCodeGroupID,
+            bool pAddBlankCode = true,
+            bool pIncludeSoftDeleted = true);
 
-       
+        public USERCODE GetUserCode(
+            string pUserCodeID,
+            string pUserCodeGroupID);
 
-      
-       
+        public string GetUserCodeDescription(
+            string pUserCodeID,
+            string pUserCodeGroupID);
 
-       
 
-       
 
     }
 }

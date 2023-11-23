@@ -9,6 +9,8 @@ using LEO.Common.Literals;
 using System.Net.Mail;
 using System.Net;
 using WGK.Lib.Web.Mvc.Attributes;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace LeoCore.Controllers
 {
@@ -56,7 +58,6 @@ namespace LeoCore.Controllers
         [HttpGet]
         public ViewResult Identification()
         {
-    
             var vViewModel = GetIdentificationViewModel();
             return this.View(vViewModel);
         }
@@ -66,21 +67,69 @@ namespace LeoCore.Controllers
         [HttpGet]
         public ViewResult Maintenance(int id)
         {
-            
             var vViewModel = GetMaintenanceViewModel(id);
-                    
             return this.View(vViewModel);
         }
 
         [HttpPost]
         [NoCaching]
-        public ActionResult Maintenance(long? pID, IFormCollection pFormCollection)
+        public async Task<IActionResult> Maintenance(int? id)
         {
+            //if (this.ModelState.IsValid)
+            //{
+            if (id == null)
+            {
+                var vTraining = new TRAINING();
+                if (await TryUpdateModelAsync<Data.Models.TRAINING>(vTraining, "TRAININGDetail"))
+                {
+                    try
+                    {
+                        _repository.AddTraining(vTraining);
+                        _repository.Save();
+                    }
+                    catch (DbUpdateException /* ex */)
+                    {
+                        //Log the error (uncomment ex variable name and write a log.)
+                        ModelState.AddModelError("", "Unable to save changes. " +
+                            "Try again, and if the problem persists, " +
+                            "see your system administrator.");
+                    }
+                    return RedirectToAction(nameof(Identification));
+                }
 
-                    return null;
+            }
+            else //heeft wel een id dus bestaande training.
+            {
 
-            
+                //binding
+                var TrainingToUpdate = _repository.GetTRAINING(id);
+                if (await TryUpdateModelAsync<Data.Models.TRAINING>(TrainingToUpdate, "TRAININGDetail"))
+                {
+                    try
+                    {
+                        _repository.Save();
+                    }
+                    catch (DbUpdateException /* ex */)
+                    {
+                        //Log the error (uncomment ex variable name and write a log.)
+                        ModelState.AddModelError("", "Unable to save changes. " +
+                            "Try again, and if the problem persists, " +
+                            "see your system administrator.");
+                    }
+                    return RedirectToAction(nameof(Identification));
+                }
+            }
+
+            // mochht in de if or else iets mus zijn gegaan
+            return RedirectToAction(nameof(Identification));
+            //}
+            //else
+            //{
+            //this.ModelState.AddModelError("Error error error ", "ieieie");
+            //    return this.View(GetMaintenanceViewModel(id));
+            //}
         }
+
         #endregion
 
 
@@ -88,7 +137,7 @@ namespace LeoCore.Controllers
         {
             TrainingIdentificationViewModel vTrainingIdentificationViewModel;
             
-                vTrainingIdentificationViewModel = new TrainingIdentificationViewModel(_usercodcerepository, _repository )
+                vTrainingIdentificationViewModel = new TrainingIdentificationViewModel(_usercodcerepository, _repository, _mapper )
                 {
                     
                 };
@@ -98,26 +147,19 @@ namespace LeoCore.Controllers
         private TrainingMaintenanceViewModel GetMaintenanceViewModel(int? pID, ActivityStatusEnum? pActivity = null)
         {
             TrainingMaintenanceViewModel vTrainingMaintenanceModel;
-            if (pID == null || pActivity == ActivityStatusEnum.Select)
+            if (((pID == null || pID == 0) || (pActivity == ActivityStatusEnum.Select)))
             {
-                vTrainingMaintenanceModel = new TrainingMaintenanceViewModel()
+                vTrainingMaintenanceModel = new TrainingMaintenanceViewModel(_usercodcerepository)
                 {
                     TRAININGDetail = new TRAINING()
                 };
             }
             else
             {
-
-
-                vTrainingMaintenanceModel = new TrainingMaintenanceViewModel()
+                vTrainingMaintenanceModel = new TrainingMaintenanceViewModel(_usercodcerepository)
                 {
                     TRAININGDetail = _repository.GetTRAINING(pID.Value, false, false, false)
-
                 };
-
-                vTrainingMaintenanceModel.TRAININGDetail.SUBJECT = "ggggggg";
-                _repository.Save();
-
             }
             return vTrainingMaintenanceModel; ;
         }

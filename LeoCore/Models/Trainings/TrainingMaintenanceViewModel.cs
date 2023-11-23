@@ -6,11 +6,16 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
+using LEO.Common.Codes;
+
 
 
 
 using LeoCore.Data;
-
+using LeoCore.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LeoCore.Models.Trainings
 {
@@ -35,16 +40,38 @@ namespace LeoCore.Models.Trainings
             private const string cAccordionPanelHtmlIDAlgemeen = "Algemeen";
             public static string AccordionPanelHtmlIDAlgemeen { get { return cAccordionPanelHtmlIDAlgemeen; } }
 
-            #endregion
-            #region Constructors
-            public TrainingMaintenanceViewModel()
-            {
+            private readonly IUserCodeRepository _usercoderepository;
 
-            }
+        #endregion
+
+
+        #region Constructors
+        public TrainingMaintenanceViewModel(IUserCodeRepository usercoderepository)
+        {
+            //IUserCodeRepository usercoderepository = ;
+            _usercoderepository = usercoderepository;
+            //methodologielijstje
+            cMETHODOLOGYLijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
+            //var mlijst = _usercoderepository.GetUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
+            //if (mlijst != null)
+            //{
+            //    cMETHODOLOGYLijst = new List<SelectListItem>() ; //zodat er niks blijft hangen van een vorige keer
+            //    int i = 0;
+            //    foreach (var m in mlijst)
+            //    {
+            //        cMETHODOLOGYLijst.Insert(i, (new SelectListItem { Text = m.DESCRIPTION, Value = m.USERCODEID}));
+            //        i++;
+            //    };
+            //};
+        }
+
+
         #endregion
 
         #region Base class implementation
         public LeoCore.Data.Models.TRAINING TRAININGDetail { get; set; }
+
+        public List<SelectListItem> cMETHODOLOGYLijst { get; set; }
 
         public string Qrcode;
 

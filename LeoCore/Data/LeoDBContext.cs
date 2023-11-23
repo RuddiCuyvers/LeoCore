@@ -239,11 +239,11 @@ namespace LeoCore.Data
             {
                 entity.HasKey(e => e.ID).HasName("PRIMARY");
 
-                entity.ToTable(tb => tb.HasComment("	"));
+                entity.ToTable("TRAINING", tb => tb.HasComment("	"));
 
                 entity.HasIndex(e => e.ID, "ID_UNIQUE").IsUnique();
 
-                entity.Property(e => e.ID).ValueGeneratedNever();
+                entity.Property(e => e.ID).ValueGeneratedOnAdd();
                 entity.Property(e => e.APPLICANT_CLIENTID)
                     .HasMaxLength(255)
                     .HasComment("google account van de inbrenger/lesgever");
