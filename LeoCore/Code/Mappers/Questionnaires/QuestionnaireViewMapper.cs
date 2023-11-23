@@ -11,7 +11,7 @@
 //using LEO.Business.UseCases.Questionnaires;
 //using LEO.Common.Codes;
 //using LEO.Common.Constants.Questionnaire;
-//using LEO.Web.Models.Questionnaires;
+//using LeoCore.Models.Questionnaires;
 
 //using WGK.Lib.Exceptions;
 //using WGK.Lib.Extensions;
@@ -21,7 +21,7 @@
 
 //using System.IO;
 
-//namespace LEO.Web.Code.Mappers.Questionnaires
+//namespace LeoCore.Code.Mappers.Questionnaires
 //{
 //    public class QuestionnaireViewMapper  :
 //        IMapper<PersonQuestionnaireMaintenanceModel, QuestionnaireMaintenanceViewModel>,

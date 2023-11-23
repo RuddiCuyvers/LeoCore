@@ -1,0 +1,103 @@
+﻿
+
+@using LEO.Common.Codes
+@using LEO.Common.Literals
+@using LeoCore.Models.Questionnaires
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls
+@using LEO.Common.Codes
+
+@model LeoCore.Models.Questionnaires.QuestionnaireMaintenanceViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });@* END OF $(document).ready function *@
+
+</script>
+<link href="@this.Url.Content("~/Content/Rating.css")" rel="stylesheet" type="text/css" />
+<script defer src="@this.Url.Content("~/Scripts/Rating.js")" type="text/javascript"></script>
+<div >
+    <div>
+        <table class="layout-table">
+          @*   @foreach (var item in Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails.Select((value, i) => new { i, value }))
+            {
+                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.QTEXT_AS_WAS)
+                    </td>
+                    <td>
+                        
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ID)
+                    </td>
+                    <td>
+                        @if (item.value.QTYPEANSWER_AS_WAS == "T")
+                        {
+                            @Html.WGKTextBoxFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ANSWER_TEXT, ActivityStatusEnablementEnum.EditInsert)
+                        }
+                        else if (item.value.QTYPEANSWER_AS_WAS == "J")
+                        {
+                          @*  @Html.WGKUserCodeDropDownListFor(
+                            modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ANSWER_TEXT,
+                            pModel => pModel.UserCodeManager,
+                            UserCodeGroupCode.JaNeeLijst,
+                            true, // pAddBlankCode
+                            null,
+                            null, // pParentUserCodeID
+                            null,  //Hide if readOnly
+                            false, // pIncludeSoftDeleted
+                            new { style = "" },
+                            ActivityStatusEnablementEnum.EditInsert)
+                        }
+                        else if (item.value.QTYPEANSWER_AS_WAS == "K")
+                        {
+                          @*  @Html.WGKUserCodeDropDownListFor(
+                            modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ANSWER_TEXT,
+                            pModel => pModel.UserCodeManager,
+                            UserCodeGroupCode.Score5Lijst,
+                            true, // pAddBlankCode
+                            null,
+                            null, // pParentUserCodeID
+                            null,  //Hide if readOnly
+                            false, // pIncludeSoftDeleted
+                            new { style = "" },
+                            ActivityStatusEnablementEnum.EditInsert)
+
+                        }
+                        else if (item.value.QTYPEANSWER_AS_WAS == "L")
+                        {
+                          @*  @Html.WGKUserCodeDropDownListFor(
+                          modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ANSWER_TEXT,
+                          pModel => pModel.UserCodeManager,
+                          UserCodeGroupCode.Score10Lijst,
+                          true, // pAddBlankCode
+                          null,
+                          null, // pParentUserCodeID
+                          null,  //Hide if readOnly
+                          false, // pIncludeSoftDeleted
+                          new { style = "" },
+                          ActivityStatusEnablementEnum.EditInsert)
+                        }
+                        else   //indien geen goede match//ToDo: dit eruit? en een echte foutmelding geven??
+                        {
+                            @Html.TextBoxFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].ANSWER_TEXT, ActivityStatusEnablementEnum.EditInsert)
+                        }
+                    </td>
+                    <td>
+                     
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].PERSON_QUESTIONNAIRE_ID)
+                    </td>
+                    <td>
+
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].QUESTION_ID)
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].QTEXT_AS_WAS)
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].QQORDER_AS_WAS)
+                        @Html.HiddenFor(modelItem => Model.Person_QuestionnaireDetail.PERSON_QUESTIONNAIRE_ANSWERDetails[item.i].QTYPEANSWER_AS_WAS)
+
+                    </td>
+                </tr>
+            } *@
+        </table>
+    </div>
+</div>
+

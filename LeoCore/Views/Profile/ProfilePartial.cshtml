@@ -1,0 +1,114 @@
+﻿
+@using System.Configuration
+@using LeoCore.Code.Menus
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls.Menu
+@using LeoCore.Controllers
+@using LEO.Common.Constants
+@using LEO.Common.Literals
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@using WGK.Lib.Web.GoogleAdminApi
+@using System.Globalization
+@*@using System.Text.RegularExpressions;*@
+@using WGK.Lib.Security
+
+
+
+@using WGK.Lib.Web.Constants
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Helpers
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@using LEO.Common.Constants
+@using LEO.Common.Constants.IBF
+
+@using LEO.Common.Codes
+@using LEO.Common.Literals
+@{
+    //Cookie Groepen uitlezen en in array steken  //$$µµ
+    //HttpCookie cookieObj = Request.Cookies["GroepenCookie"];
+    //string _websiteValue = cookieObj.Value;
+    //string[] pieces = _websiteValue.Split(new string[] { "," }, StringSplitOptions.None);
+}
+
+<div class="kaart card">
+    <h2>Profiel Gegevens</h2>
+    <div class="pKaart card">
+        <div class="profile">
+         
+        </div>
+    </div>
+</div>
+<div class="kaart card ">
+    <h2>Algemene gegevens</h2>
+    <!--2 kolommen via bootstrap die ingevuld worden in de oneven P's-->
+    <div class="pKaart card ">
+        <div class="row row-cols-2 pRow">
+            <p class="col">Volledige Naam: </p>
+           
+
+        </div>
+    </div>
+</div>
+<div class="kaart card">
+    <h2>Groepen</h2>
+    <div class="pKaart card ">
+        <div class="row row-cols-2 pRow">
+           @* @foreach (var item in pieces.Distinct().ToArray())
+            {
+                <p class="col">Naam van groep: </p>
+                <p class="col">@item</p>
+            }*@
+
+        </div>
+    </div>
+    </div>
+    <div class="kaart card">
+        <h2>Instellingen</h2>
+        <h3>Algemeen</h3>
+        <div class="pKaart card">
+
+            <div class="row row-cols-2 pRow">
+                <p class="col">Taal Website: </p>
+                <div class="col">
+
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Nederlands</option>
+                        <option value="1">Nederlands</option>
+                        <option value="2">Duits</option>
+                        <option value="3">Engels</option>
+                    </select>
+                </div>
+                <p class="col">Homepage: </p>
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Mijn IBF</option>
+                        <option value="1">Mijn IBF</option>
+                        <option value="2">Mijn Lessen</option>
+                        <option value="3">Mijn Profiel</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <h3>Email voorkeuren</h3>
+        <div class="pKaart card">
+            <div class="row row-cols-2 pRow">
+                <p class="col">Nieuwsbrief Ontvagen:</p>
+                <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+                <p class="col">Bevestigings mails:</p>
+                <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+                <p class="col">Herinerings mails:</p>
+                <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+            </div>
+        </div>
+    </div>

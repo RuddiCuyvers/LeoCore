@@ -21,7 +21,6 @@ namespace LeoCore.Models.Trainings
 {
     public class TrainingMaintenanceViewModel
     {
-   
 
             #region Constants - Field names
             private const string cTRAININGDetailFieldName = "LesDetail";

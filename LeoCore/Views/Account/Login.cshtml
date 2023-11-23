@@ -1,0 +1,119 @@
+﻿
+@model LeoCore.Models.ExternalLoginListViewModel
+
+
+@using System.Configuration
+@using LeoCore.Code.Menus
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Controls.Menu
+
+@using LEO.Common.Constants
+@using LEO.Common.Literals
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@using Microsoft.AspNetCore.Identity
+
+
+
+<style src="/Content/style.css"></style>
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 infinity-left-space"></div>
+
+            <!-- FORM BEGIN -->
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center LMS-form">
+                <!-- Company Logo -->
+                <div class="text-center mb-3 mt-5">
+                  <img src='/Rescources/WGK_Limburg_logo_RGB_pos.png' width="160px"  />
+
+                 
+                    
+                </div>
+                <div class="text-center mb-4">
+                    <h4>Aanmelden</h4>
+                </div>
+                <!-- Form -->
+                <form class="px-3">
+                    <!-- Input Box -->
+                    <div class="form-input">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <input type="email"
+                               name=""
+                               placeholder="Email Address"
+                               tabindex="10"
+                               required />
+                    </div>
+                    <div class="form-input">
+                        <span><i class="fa fa-lock"></i></span>
+                        <input type="Wachtwoord"
+                               name=""
+                               placeholder="Wachtwoord"
+                               required />
+                    </div>
+                    <div class="row mb-3">
+                        <!-- Remember Box -->
+                        <div class="col-auto d-flex align-items-center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input"
+                                       id="cb1" />
+                                <label class="custom-control-label" for="cb1">Onthoud mij</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Login Button -->
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-block">Aanmelden</button>
+                    </div>
+                    <div class="text-right">
+                        <a href="reset.html" class="forget-link">Wachtwoord vergeten?</a>
+                    </div>
+                    <hr class="line">
+                    <div class="text-center mb-2">
+                        <div class="Google-devide" style="color: #777">
+                            Or sign in with Google
+                        </div>
+                        <br>
+
+                        <!-- Google Button -->
+
+                        <div>
+                            @*<button class="Google-button"><img src="~/Rescources/btn_google_signin_dark_pressed_web@2x.png" alt="Google sign in"></button>*@
+                            
+                            <button class="Google-button"  onclick="location.href='@Url.Action( "ExternalLogin", "Account", new { provider = "Google", ReturnUrl = @ViewBag.ReturnUrl })';return false;"><img src="~/Rescources/btn_google_signin_dark_pressed_web@2x.png" alt="Google sign in"></button>
+
+                        </div>
+                        </div>
+                        <!-- FORM END -->
+                        </form>
+
+                    </div>
+            </div>
+
+        </div>
+        </body>
+</html>
+
+
+@section Scripts {
+    <script src="~/bundles/jqueryval"></script>
+}

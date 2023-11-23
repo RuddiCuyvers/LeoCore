@@ -1,5 +1,5 @@
-using LEO.Web.Code.Mappers.IBF;
-using LEO.Web.Code.Mappers.Trainings;
+using LeoCore.Code.Mappers.IBF;
+using LeoCore.Code.Mappers.Trainings;
 using LeoCore.Data;
 using LeoCore.Models.Trainings;
 using Microsoft.EntityFrameworkCore;

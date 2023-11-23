@@ -6,13 +6,13 @@
 //using LEO.Business.Dtos.Questionnaires;
 //using LEO.Common.Constants.Questionnaire;
 //using LEO.Common.Literals;
-//using LEO.Web.Models.Questionnaires;
+//using LeoCore.Models.Questionnaires;
 //using WGK.Lib.DataAnnotations;
 //using WGK.Lib.Extensions;
 //using WGK.Lib.Mappers;
 //using WGK.Lib.UseCases;
 
-//namespace LEO.Web.Code.Mappers.Questionnaires
+//namespace LeoCore.Code.Mappers.Questionnaires
 //{
 //    public class QuestionnaireViewMerger 
 //    {

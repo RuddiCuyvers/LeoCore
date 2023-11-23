@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Content Remove="C:\Users\rcuyvers\.nuget\packages\bootstrap\5.3.2\contentFiles\any\any\wwwroot\css\bootstrap.css" />
-    <Content Remove="wwwroot\Scripts\bootstrap.min.js" />
     <Content Remove="wwwroot\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Remove="wwwroot\Scripts\jquery-1.10.2.min.js" />
     <Content Remove="wwwroot\Scripts\jquery-1.10.2.min.map" />
@@ -172,7 +171,6 @@
     <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.vi.min.js" />
     <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.zh-CN.min.js" />
     <None Include="wwwroot\js\bootstrap-datapicker\locales\bootstrap-datepicker.zh-TW.min.js" />
-    <None Include="wwwroot\Scripts\bootstrap.min.js" />
     <None Include="wwwroot\Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="wwwroot\Scripts\jquery-1.10.2.min.js" />
     <None Include="wwwroot\Scripts\jquery-1.10.2.min.map" />
@@ -754,9 +752,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Rescources\WGK_Limburg_logo_RGB_pos.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\Scripts\bootstrap.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Scripts\globalize.js">

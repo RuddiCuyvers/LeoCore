@@ -129,7 +129,6 @@
 @*-- Form --*@
 @using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = this.Model.UniqueID + "SearchForm", defaultbutton = "SearchButton" }))
 {
-    @Html.ValidationSummary(false, CommonLiterals.ValidationSummaryTitle)
  
 <div class="kaart card">
     <h2>Trainingen</h2>
@@ -148,11 +147,11 @@
                columns.Add(model => model.EVIDENCEBASED_YN).Titled("Evidence");
                columns.Add(model => model.INTERNEXTERN).Titled("Int./Ext.");
                columns.Add(model => model.TrainingID).Titled("Ref. ID.");
-               columns.Add().RenderedAs(o => Html.Raw($"<a name=\"ed\" id=\"ed\" href='/Trainings/Maintenance/"+ o.TrainingID + "' onclick=Edit('" + o.TrainingID + "')><img src='../images/editicon.png' height='20px' width='20px' alt='Image picture' /></a>"));
+                    columns.Add().RenderedAs(o => Html.Raw($"<a name=\"ed\" id=\"ed\" href='/Trainings/Maintenance/" + o.TrainingID + "' onclick=Edit('" + o.TrainingID + "')><img src='../Rescources/LogoKruis.png' height='20px' width='20px' alt='Image picture' /></a>"));
         })
            
            //.UsingUrl("~/Trainings/Maintenance/")
-           .Named(this.Model.UniqueID + "ResultGrid")
+           //.Named(this.Model.UniqueID + "ResultGrid")
            .Using(GridFilterMode.Row)
            .Empty("Geen trainingen gevonden")
            .Filterable()

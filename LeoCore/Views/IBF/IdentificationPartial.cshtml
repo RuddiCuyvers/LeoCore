@@ -69,18 +69,24 @@
                 <div class="card-body">
                     <p>Vorming gevolgd op @item.DATUMTRAINING</p> <br />
                     <p class="card-text">Training type: @item.TRAINING_TYPE</p><br />
-                    @if (item.NOMENCLATUUR_YN.ToLower() == "ja")
+                    @if (item.NOMENCLATUUR_YN != null)
                     {
-                        <p>Deze training was nomenclatuur.</p><br />
+                        @if (item.NOMENCLATUUR_YN.ToLower() == "ja")
+                        {
+                            <p>Deze training was nomenclatuur.</p><br />
+                        }
                     }
-                    @if (item.METHODOLOGY.ToLower() == "online")
+                    @if (item.METHODOLOGY != null)
                     {
-                        <p>Deze vorming ging online door op volgende link: </p>
-                        <a href="@item.LINK">@item.LINK</a>
-                    }
-                    else
-                    {
-                        <p>Deze vorming werd @item.METHODOLOGY gegeven.</p>
+                        @if (item.METHODOLOGY.ToLower() == "online")
+                        {
+                            <p>Deze vorming ging online door op volgende link: </p>
+                            <a href="@item.LINK">@item.LINK</a>
+                        }
+                        else
+                        {
+                            <p>Deze vorming werd @item.METHODOLOGY gegeven.</p>
+                        }
                     }
                     <p>Vorming met ref. nummer: @item.TrainingID </p>
                 </div>

@@ -1,7 +1,7 @@
 ﻿using LeoCore.Models.IBF;
 using AutoMapper;
 
-namespace LEO.Web.Code.Mappers.IBF
+namespace LeoCore.Code.Mappers.IBF
 {
     public class IBFViewMapper  : Profile
     {

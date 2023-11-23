@@ -1,0 +1,52 @@
+﻿@using LeoCore.Models.Questionnaires
+@using WGK.Lib.Security
+@using WGK.Lib.Web.Constants
+@using WGK.Lib.Web.Enumerations
+@using WGK.Lib.Web.Mvc.Helpers
+@using WGK.Lib.Web.Mvc.HtmlHelpers
+
+@using LEO.Common.Constants.Trainings
+@using LEO.Common.Literals
+@using LeoCore.Controllers
+@using LeoCore.Models.Trainings
+@using LEO.Common.Codes
+
+@model LeoCore.Models.Questionnaires.QuestionnaireMaintenanceViewModel
+
+
+@*Een rij waarin 4 kollommen staan waarin de details van de aanvrager en vorming staat*@
+<div class="row align-items-start">
+    <div class="col-md-6">
+        @Html.Label("Vormingscode")
+       @*  @Html.TextBoxFor(
+             pModel => pModel.Person_QuestionnaireDetail.TRAINING_ID,
+             ActivityStatusEnablementEnum.ReadOnly) *@
+    </div>
+    <div class="col-md-6">
+        @Html.Label("Naam")
+      @*   @Html.TextBoxFor(
+               pModel => pModel.Person_QuestionnaireDetail.CLIENT_ID,
+               ActivityStatusEnablementEnum.ReadOnly) *@
+    </div>
+   @* <div class="col-md-6">
+        @Html.WGKLabel("Functie")
+        <input class="form-control" type="text" placeholder="@Request.GetOwinContext().Authentication.User.Claims.ElementAt(7).Value" aria-label="Disabled input example" disabled>
+    </div>
+    <div class="col-md-6">
+        @Html.WGKLabel("Afdeling")
+        <input class="form-control" type="text" placeholder="@Request.GetOwinContext().Authentication.User.Claims.ElementAt(6).Value" aria-label="Disabled input example" disabled>
+    </div>*@
+    @*@<div class="col-md-6">
+        @Html.WGKLabel("Functie")
+        <input class="form-control" type="text" placeholder="@Session["ClaimRole"].ToString()" aria-label="Disabled input example" disabled>  //$$µµ
+    </div>
+    <div class="col-md-6">
+        @Html.WGKLabel("Afdeling")
+        <input class="form-control" type="text" placeholder="@Session["ClaimLocality"].ToString()" aria-label="Disabled input example" disabled> //$$µµ
+    </div>
+    *@
+</div>
+
+
+
+

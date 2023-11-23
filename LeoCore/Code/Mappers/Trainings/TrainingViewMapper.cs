@@ -5,7 +5,7 @@ using LeoCore.Data;
 using LEO.Common.Codes;
 using System.Runtime.CompilerServices;
 
-namespace LEO.Web.Code.Mappers.Trainings
+namespace LeoCore.Code.Mappers.Trainings
 {
     public class TrainingViewMapper : Profile
     {
