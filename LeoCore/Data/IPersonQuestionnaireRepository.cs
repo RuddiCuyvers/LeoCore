@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LeoCore.Data.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LeoCore.Data
 {
@@ -66,12 +67,15 @@ namespace LeoCore.Data
         /// <param name="pHardDelete">If true then remove row from database, otherwise perform a soft delete (default).</param>
         void DeletePERSON_QUESTIONNAIRE(int pPersonQuestionnaireID, byte[] pRowVersion, bool pHardDelete = false);
 
-        
+
+        void Save();
+
+        void Update(PERSON_QUESTIONNAIRE pPERSON_QUESTIONNAIRE);
 
 
         #endregion
 
-       
+
 
 
 

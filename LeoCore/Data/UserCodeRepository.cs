@@ -117,7 +117,7 @@ namespace LeoCore.Data
             bool pIncludeSoftDeleted = true)
         {
             var a = new List<SelectListItem>();
-            var mlijst = GetUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
+            var mlijst = GetUserCodesForUserCodeGroup(pUserCodeGroupID, false, false);
             if (mlijst != null)
             {
                 

@@ -7,6 +7,8 @@ using LeoCore.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 using LeoCore.Data.Models;
+using System.Reflection.Metadata;
+using System.Diagnostics;
 
 namespace LeoCore.Data
 {
@@ -56,20 +58,24 @@ namespace LeoCore.Data
         {
             // -- Fetch QUESTIONNAIRE row
             var vPERSONQUESTIONNAIREQuery = this._context.PERSON_QUESTIONNAIRE
-                .Where(p => (p.ID == pID)).Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
+                .Where(p => (p.ID == pID)).Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs).Include(p=>p.QUESTIONNAIRE);
 
-            var add = vPERSONQUESTIONNAIREQuery.Count();
+            //var add = vPERSONQUESTIONNAIREQuery.Count();
 
-            if (pIncludeAllData)
-            {
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
-            }
+            //if (pIncludeAllData)
+            //{
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
+            //}
 
-            if (!pIncludeSoftDeleted)
-            {
-                // Don't return deleted entities
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
-            }
+            //if (!pIncludeSoftDeleted)
+            //{
+            //    // Don't return deleted entities
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
+            //}
+            //if(pNoTracking == true)
+            //{
+            //    vPERSONQUESTIONNAIREQuery.AsNoTracking();
+            //}
 
             // Execute the query
             PERSON_QUESTIONNAIRE vPERSONQUESTIONNAIRE = vPERSONQUESTIONNAIREQuery.FirstOrDefault();
@@ -93,19 +99,19 @@ namespace LeoCore.Data
            bool pNoTracking = false)
         {
             var vPERSONQUESTIONNAIREQuery = this._context.PERSON_QUESTIONNAIRE
-                   .Where(p => p.TRAINING_ID == pTrainingID);
+                   .Where(p => p.TRAINING_ID == pTrainingID).Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
                 
-            if (pIncludeAllData)
-            {
-                // Include entities referred to by foreign key
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
-            }
+            //if (pIncludeAllData)
+            //{
+            //    // Include entities referred to by foreign key
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
+            //}
 
-            if (!pIncludeSoftDeleted)
-            {
-                // Don't return deleted entities
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
-            }
+            //if (!pIncludeSoftDeleted)
+            //{
+            //    // Don't return deleted entities
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
+            //}
 
             
 
@@ -126,19 +132,19 @@ namespace LeoCore.Data
            bool pNoTracking = false)
         {
             var vPERSONQUESTIONNAIREQuery = this._context.PERSON_QUESTIONNAIRE
-                   .Where(p => p.TRAINING_ID == pTrainingID).Where(p => p.CLIENT_ID == pClientID);
+                   .Where(p => p.TRAINING_ID == pTrainingID).Where(p => p.CLIENT_ID == pClientID).Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
 
-            if (pIncludeAllData)
-            {
-                // Include entities referred to by foreign key
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);
-            }
+            //if (pIncludeAllData)
+            //{
+            //    // Include entities referred to by foreign key
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery.Include(p => p.PERSON_QUESTIONNAIRE_ANSWERs);//.Include(pq => pq.QUESTIONNAIRE).Include(pq => pq.QUESTIONNAIRE.QUESTIONNAIRE_QUESTIONs);
+            //}
 
-            if (!pIncludeSoftDeleted)
-            {
-                // Don't return deleted entities
-                vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
-            }
+            //if (!pIncludeSoftDeleted)
+            //{
+            //    // Don't return deleted entities
+            //    vPERSONQUESTIONNAIREQuery = vPERSONQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
+            //}
 
            
 
@@ -199,6 +205,21 @@ namespace LeoCore.Data
                 // Mark a single column as modified
                //ToDO: this._context.SetModifiedProperty(vQUESTIONNAIRE, QUESTIONNAIRE.SoftDeletedFieldName);
             }
+        }
+
+        public void Save()
+        {
+
+            Debug.WriteLine(_context.ChangeTracker.DebugView.LongView);
+            var a = this._context.SaveChangesAsync().Result;
+
+        }
+        public void Update(PERSON_QUESTIONNAIRE pPERSON_QUESTIONNAIRE)
+        {
+
+           
+            var a = this._context.Update(pPERSON_QUESTIONNAIRE);
+
         }
 
 

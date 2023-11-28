@@ -18,6 +18,8 @@ namespace LeoCore.Data
         /// <returns>Query of QUESTIONNAIRE</returns>
         IQueryable<QUESTIONNAIRE> FindAllQUESTIONNAIREs(bool pIncludeSoftDeleted = false);
 
+
+        IList<QUESTION> FindAllQuestions(bool pIncludeSoftDeleted = false);
         /// <summary>
         /// Fetches the QUESTIONNAIRE.
         /// </summary>

@@ -45,6 +45,15 @@ namespace LeoCore.Data
             return vQuery;
         }
 
+        public IList<QUESTION> FindAllQuestions(bool pIncludeSoftDeleted = false)
+        {
+            IList<QUESTION> vQuery = this._context.QUESTION.ToList();
+            if (!pIncludeSoftDeleted)
+            {
+                vQuery = vQuery; //.Where(p => p.SoftDeleted == false);
+            }
+            return vQuery;
+        }
 
         /// <summary>
         /// Fetches the QUESTIONNAIRE.
@@ -98,9 +107,9 @@ namespace LeoCore.Data
            bool pIncludeAllData = true,
            bool pNoTracking = false)
         {
-            var vQUESTIONNAIREQuery = this._context.TRAINING_QUESTIONNNAIRE
-                   .Where(p => p.TRAINING_ID == pTrainingID).Select(p => p.QUESTIONNAIRE).Include(p => p.QUESTIONNAIRE_QUESTIONs.Select(qq => qq.QUESTION)).Include(p => p.QUESTIONNAIRE_QUESTIONs).ToList();
-                
+
+            int lQuestID = this._context.TRAINING_QUESTIONNNAIRE.First(p => p.TRAINING_ID == pTrainingID).QUESTIONNAIRE_ID;
+            var vQUESTIONNAIREQuery = this._context.QUESTIONNAIRE.First(p => p.ID == lQuestID);
            
             if (!pIncludeSoftDeleted)
             {
@@ -108,9 +117,17 @@ namespace LeoCore.Data
                 vQUESTIONNAIREQuery = vQUESTIONNAIREQuery; //.Where(p => p.SoftDeleted == false);
             }
 
-            
+            return vQUESTIONNAIREQuery;
 
-            return vQUESTIONNAIREQuery.FirstOrDefault();
+            //return vQUESTIONNAIREQuery.FirstOrDefault();
+        }
+
+
+        public QUESTION GetQuestionByQuestionID(int pQuestionID)
+        {
+
+            QUESTION lquestion = this._context.QUESTION.First(q=>q.ID == pQuestionID);
+            return lquestion;
         }
 
         

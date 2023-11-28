@@ -15,6 +15,7 @@ using LeoCore.Data;
 using LeoCore.Data.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;
+using WGK.Lib.Web.Enumerations;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace LeoCore.Models.Questionnaires
@@ -25,6 +26,24 @@ namespace LeoCore.Models.Questionnaires
         #region Constants - Field names
         private const string cQuestionnaireDetailFieldName = "QuestionnaireDetail";
         public static string QuestionnaireDetailFieldName { get { return cQuestionnaireDetailFieldName; } }
+
+        public string Title { get; set; }
+        public string MainTitle { get; set; }
+        public string ActivePanels { get; set; }
+        public ActivityStatusEnum ActivityStatus { get; set; }
+        public bool IsInLookupMode { get; set; }
+        public string TaskID { get; set; }
+        public string UniqueID { get; set; }
+        public bool UsePrintStyle { get; set; }
+
+
+        public string ActionType { get; set; }
+
+        //**********
+        public List<SelectListItem> cJaNeeLijst { get; set; }
+        public List<SelectListItem> cScore5Lijst { get; set; }
+        public List<SelectListItem> cScore10Lijst { get; set; }
+
         #endregion
 
         #region Constants - Accordion HtmlID prefix and suffixes
@@ -46,16 +65,18 @@ namespace LeoCore.Models.Questionnaires
         public QuestionnaireMaintenanceViewModel(IUserCodeRepository usercoderepository)
         {
             _usercoderepository = usercoderepository;
+
+            //methodologielijstje
+            cJaNeeLijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cJaNeeLijst, false, false);
+            cScore5Lijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cScore5Lijst, false, false);
+            cScore10Lijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cScore10Lijst, false, false);
         }
         #endregion
 
         #region Base class implementation
-        /// <summary>
-        /// Gets the QuestionnaireDetail instance cast as the base DossierDetail business-layer model class.
-        /// </summary>
-        public  LeoCore.Data.Models.QUESTIONNAIRE  QuestionnaireDetail { get; set; }
 
-        public string UniqueID = Guid.NewGuid().ToString();
+        public  LeoCore.Data.Models.QUESTIONNAIRE  QuestionnaireDetail { get; set; }
+        public LeoCore.Data.Models.PERSON_QUESTIONNAIRE Person_QuestionnaireDetail { get; set; }
 
         #endregion
 

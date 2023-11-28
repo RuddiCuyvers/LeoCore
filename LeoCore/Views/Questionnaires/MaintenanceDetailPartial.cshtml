@@ -18,15 +18,15 @@
 <div class="row align-items-start">
     <div class="col-md-6">
         @Html.Label("Vormingscode")
-       @*  @Html.TextBoxFor(
-             pModel => pModel.Person_QuestionnaireDetail.TRAINING_ID,
-             ActivityStatusEnablementEnum.ReadOnly) *@
+         @Html.TextBoxFor(pModel => pModel.Person_QuestionnaireDetail.TRAINING_ID,new { @readonly = true })
     </div>
     <div class="col-md-6">
         @Html.Label("Naam")
-      @*   @Html.TextBoxFor(
-               pModel => pModel.Person_QuestionnaireDetail.CLIENT_ID,
-               ActivityStatusEnablementEnum.ReadOnly) *@
+        @Html.TextBoxFor(pModel => pModel.Person_QuestionnaireDetail.CLIENT_ID,new { @readonly = true })
+    </div>
+      <div class="col-md-6">
+        @Html.Label("Person_QuestID")
+        @Html.TextBoxFor(pModel => pModel.Person_QuestionnaireDetail.ID,new { @readonly = true })
     </div>
    @* <div class="col-md-6">
         @Html.WGKLabel("Functie")

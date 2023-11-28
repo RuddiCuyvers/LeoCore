@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Http;
 
 using LeoCore.Models.Questionnaires;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeoCore.Controllers
 {
@@ -75,18 +76,67 @@ namespace LeoCore.Controllers
         public static string AutoCompleteJsonMethodName { get { return cAutoCompleteJsonMethodName; } }
         private const string cAutoCompleteJsonMethodName = "AutoComplete";
 
+
+        private const string cInfoMessageKey = "INFO_MSG";
+        public static string InfoMessageKey
+        {
+            get { return cInfoMessageKey; }
+        }
+        private const string cErrorMessageKey = "ERROR_MSG";
+        public static string ErrorMessageKey
+        {
+            get { return cErrorMessageKey; }
+        }
+
         #endregion
 
         #region Constructors
 
         private readonly IMapper _mapper;
-        private readonly IQuestionnaireRepository _repository;
-        private readonly IUserCodeRepository _usercodcerepository;
+        private readonly IPersonQuestionnaireRepository _personquestionnairerepository;
+        private readonly ITrainingRepository _trainingrepository;
+        private readonly IQuestionnaireRepository _questionnairerepository;
+        private readonly IUserCodeRepository _usercoderepository;
 
-        public QuestionnairesController(IQuestionnaireRepository repository, IUserCodeRepository usercodcerepository, IMapper mapper)
+        public string InfoMessageForView
         {
-            _repository = repository;
-            _usercodcerepository = usercodcerepository;
+            get { return this.ViewData[cInfoMessageKey] as string; }
+            set { this.ViewData[cInfoMessageKey] = value; }
+        }
+
+        /// <summary>
+        /// Gets, sets the information message that is displayed in the redirected View
+        /// </summary>
+        public string InfoMessageForRedirect
+        {
+            get { return this.TempData[cInfoMessageKey] as string; }
+            set { this.TempData[cInfoMessageKey] = value; }
+        }
+
+        /// <summary>
+        /// Gets, sets the Error message that is displayed in the View
+        /// </summary>
+        public string ErrorMessageForView
+        {
+            get { return this.ViewData[cErrorMessageKey] as string; }
+            set { this.ViewData[cErrorMessageKey] = value; }
+        }
+
+        /// <summary>
+        /// Gets, sets the Error message that is displayed in the redirected View
+        /// </summary>
+        public string ErrorMessageForRedirect
+        {
+            get { return this.TempData[cErrorMessageKey] as string; }
+            set { this.TempData[cErrorMessageKey] = value; }
+        }
+
+        public QuestionnairesController(ITrainingRepository trainingrepository, IQuestionnaireRepository questionnairerepository, IPersonQuestionnaireRepository personquestionnairerepository, IUserCodeRepository usercodcerepository, IMapper mapper)
+        {
+            _personquestionnairerepository = personquestionnairerepository;
+            _trainingrepository = trainingrepository;
+            _questionnairerepository = questionnairerepository;
+            _usercoderepository = usercodcerepository;
             _mapper = mapper;
         }
         #endregion
@@ -94,82 +144,153 @@ namespace LeoCore.Controllers
 
         #region Action Methods - Maintenance
 
-
         /// <summary>
         /// GET: /Questionnaires/Maintenance/xxx
+        ///  /// //https://localhost:44335/Questionnaires/Maintenance?pID=22&&pTRAININGID=1
         /// </summary>
         [HttpGet]
         [NoCaching]
-        public ActionResult Maintenance(int? pID, WGK.Lib.Web.Enumerations.ActivityStatusEnum? pActivity, bool pIsLeraar = false)
+        public ActionResult Maintenance(int? pID, bool pIsLeraar = false)
         {
+            //TEST interface
+            pID = 55;
+            LeoCore.Data.Client client1 = new LeoCore.Data.Client(new LeoCore.Data.Service1());
+            client1.ServeMethod();
+            //pID is de trainingID.
+            QuestionnaireMaintenanceViewModel vViewModel = this.GetMaintenanceViewModel(pID.Value, pIsLeraar);
+            
+            if (vViewModel.Person_QuestionnaireDetail.ID == -1)  //-1 als ID is de waarde voor een nieuwe questionnaire
+            {
+                vViewModel.ActivityStatus = ActivityStatusEnum.Insert;  //deze activity status bepaald welke knoppen zictbaar of enabled
+            }
+            else //bestaande questionnaire. Je mag enkel kijken maar niet meer aanpassen
+            {
+                this.InfoMessageForRedirect = @"Vragenlijst voor training met vorminingsnummer " + vViewModel.Person_QuestionnaireDetail.TRAINING_ID + " is verzonden. Verzenddatum " + vViewModel.Person_QuestionnaireDetail.DATE_SUBMITTED;
+                vViewModel.ActivityStatus = ActivityStatusEnum.View; //deze activity status bepaald welke knoppen zictbaar of enabled
+            }
            
-            QuestionnaireMaintenanceViewModel vViewModel = this.GetMaintenanceViewModel(pID, pActivity, pIsLeraar);
-            //if (vViewModel.Person_QuestionnaireDetail.ID == -1)  //-1 als ID is de waarde voor een nieuwe questionnaire
-            //{
-            //    vViewModel.ActivityStatus = ActivityStatusEnum.Insert;  //deze activity status bepaald welke knoppen zictbaar of enabled
-            //}
-            //else //bestaande questionnaire. Je mag enkel kijken maar niet meer aanpassen
-            //{
-            //    this.InfoMessageForRedirect = @"Vragenlijst voor training met vorminingsnummer " + vViewModel.Person_QuestionnaireDetail.TRAINING_ID + " is verzonden. Verzenddatum " + vViewModel.Person_QuestionnaireDetail.DATE_SUBMITTED;
-            //    vViewModel.ActivityStatus = ActivityStatusEnum.View; //deze activity status bepaald welke knoppen zictbaar of enabled
-            //}
-            //vViewModel.ActivePanels = QuestionnaireMaintenanceViewModel.AccordionPanelHtmlIDDeel1 ;
-           //**** vViewModel.Title = IocManager.Resolve<ITrainingRepository>().GetTRAINING((int)vViewModel.Person_QuestionnaireDetail.TRAINING_ID)?.SUBJECT;
             return this.View(vViewModel);
         }
 
-
-
-        /// <summary>
-        /// Action post method that creates or updates a Questionnaire instance in the database
-        /// POST: /Questionnaire/Maintenance/xxx
-        /// </summary>
-        /// <param name="pID"></param>
-        /// <param name="pFormCollection"></param>
-        /// <returns>A RedirectToRouteResult on success or a ViewResult on failure</returns>
+     
         [HttpPost]
-        [Authorize]  //$$µµ 
-        public ActionResult Maintenance(long? pID, FormCollection pFormCollection)
+        [NoCaching]
+        public async Task<IActionResult> Maintenance(int? pID)
         {
+            //pID is de Person_QuestionnaireDetail.ID
+            var ids = Request.Form["Person_QuestionnaireDetail.ID"];
+            
+            if (pID.HasValue == false)  //nieuwe
+            {
+                var vPerson_QuestionnaireDetail = new PERSON_QUESTIONNAIRE();
+                if (await TryUpdateModelAsync<Data.Models.PERSON_QUESTIONNAIRE>(vPerson_QuestionnaireDetail, "Person_QuestionnaireDetail"))
+                {
+                    try
+                    {
+                        _personquestionnairerepository.AddPERSON_QUESTIONNAIRE(vPerson_QuestionnaireDetail);
+                        _personquestionnairerepository.Save();
+                    }
+                    catch (DbUpdateException /* ex */)
+                    {
+                        //Log the error (uncomment ex variable name and write a log.)
+                        ModelState.AddModelError("", "Unable to save changes. " +
+                            "Try again, and if the problem persists, " +
+                            "see your system administrator.");
+                    }
+                    return RedirectToAction(nameof(Maintenance));
+                }
+
+            }
+            else //heeft wel een id dus bestaande training.
+            {
+
+                //binding
+                PERSON_QUESTIONNAIRE vPerson_QuestionnaireToUpdate = _personquestionnairerepository.GetPERSON_QUESTIONNAIRE(pID.Value,false, true,true) ;
+
+                                                                                                     //GetPERSON_QUESTIONNAIREByTRAININGIDAndByCLIENTID(pID, "ruddi.cuyvers@limburg.wgk.be", true, true);
+
+                //    _personquestionnairerepository.Save();
+
+
+
+
+
+                if (await TryUpdateModelAsync<Data.Models.PERSON_QUESTIONNAIRE>(vPerson_QuestionnaireToUpdate, "Person_QuestionnaireDetail"))
+                {
+
+                    foreach(var x in vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs)
+                    {
+                        x.ANSWER_DATE = System.DateTime.Now;    
+                        x.PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;  //ruddi20231128 na de tryUpdateModel werd person_questionnaire entity leeg. Dit gaf een error bij de Save. Link verbroken (severed). Door deze for each wordt dit hersteld. Niet ideaal en verder uit te zoeken waarom.
+
+                    }
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[0].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[1].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[2].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[3].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[4].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[5].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    //vPerson_QuestionnaireToUpdate.PERSON_QUESTIONNAIRE_ANSWERs[6].PERSON_QUESTIONNAIRE = vPerson_QuestionnaireToUpdate;
+                    try
+                    {
+                       // _personquestionnairerepository.Update(vPerson_QuestionnaireToUpdate);
+                        _personquestionnairerepository.Save();
+                    }
+                    catch (DbUpdateException /* ex */)
+                    {
+                //        //Log the error (uncomment ex variable name and write a log.)
+                //        ModelState.AddModelError("", "Unable to save changes. " +
+                //            "Try again, and if the problem persists, " +
+                //            "see your system administrator.");
+                    }
+                //    return RedirectToAction(nameof(Maintenance));
+                }
+            }
+
+            // mochht in de if or else iets mus zijn gegaan
+            return RedirectToAction(nameof(Maintenance));
+
+
+
             // No need to wrap method in a try/catch, ErrorHandlerAttribute takes care of logging uncaught exceptions
 
             // Bind form collection to maintenance ViewModel and update in database
             QuestionnaireMaintenanceViewModel vViewModel;
-            string vActivepanels = pFormCollection["ActivePanels"];
-            if (this.UpdateMaintenanceViewModel((int?)pID, pFormCollection, out vViewModel))
-            {
-                // Successful: Refresh View in Read mode to show update results to user
-                // Show info message to user to indicate update was successful
-                //this.InfoMessageForRedirect = string.Format(
-                //    pID == 0
-                //        ? CommonLiterals.CreateSuccessfulInfoMessage
-                //        : CommonLiterals.UpdateSuccessfulInfoMessage,
-                //    QUESTIONNAIREDisplayNames.cIDDisplayName);
+         
+            //if (this.UpdateMaintenanceViewModel((int?)pID, pFormCollection, out vViewModel))
+            //{
+            //    // Successful: Refresh View in Read mode to show update results to user
+            //    // Show info message to user to indicate update was successful
+            //    //this.InfoMessageForRedirect = string.Format(
+            //    //    pID == 0
+            //    //        ? CommonLiterals.CreateSuccessfulInfoMessage
+            //    //        : CommonLiterals.UpdateSuccessfulInfoMessage,
+            //    //    QUESTIONNAIREDisplayNames.cIDDisplayName);
 
-                // After a successful update, redirect to a HttpGet action
-                // Redirect and switch to View modus WITHOUT restoring the active panel
-               //return this.RedirectToAction("Maintenance", new { pID = vViewModel.Person_QuestionnaireDetail.TRAINING_ID });
+            //    // After a successful update, redirect to a HttpGet action
+            //    // Redirect and switch to View modus WITHOUT restoring the active panel
+            //   //return this.RedirectToAction("Maintenance", new { pID = vViewModel.Person_QuestionnaireDetail.TRAINING_ID });
               
-            }
+            //}
 
-            // If we get here we have either:
-            // - Binding errors: don't update database and show binding errors in the View
-            // - Failure: Show DossierUpdateUseCase update errors in the View
-            if (pID == 0)
-            {
-                //vViewModel.Title = string.Format(CommonLiterals.MaintenancePageCreateTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
-                //vViewModel.MainTitle = string.Format(CommonLiterals.MaintenancePageCreateTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
-                //vViewModel.ActivityStatus = ActivityStatusEnum.Insert;
-            }
-            else
-            {
-                //vViewModel.Title = string.Format(CommonLiterals.MaintenancePageEditTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
-                //vViewModel.MainTitle = string.Format(CommonLiterals.MaintenancePageEditTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
-                //vViewModel.ActivityStatus = ActivityStatusEnum.Edit;
-            }
+            //// If we get here we have either:
+            //// - Binding errors: don't update database and show binding errors in the View
+            //// - Failure: Show DossierUpdateUseCase update errors in the View
+            //if (pID == 0)
+            //{
+            //    vViewModel.Title = string.Format(CommonLiterals.MaintenancePageCreateTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
+            //    vViewModel.MainTitle = string.Format(CommonLiterals.MaintenancePageCreateTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
+            //    vViewModel.ActivityStatus = ActivityStatusEnum.Insert;
+            //}
+            //else
+            //{
+            //    vViewModel.Title = string.Format(CommonLiterals.MaintenancePageEditTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
+            //    vViewModel.MainTitle = string.Format(CommonLiterals.MaintenancePageEditTitle, QUESTIONNAIREDisplayNames.cIDDisplayName);
+            //    vViewModel.ActivityStatus = ActivityStatusEnum.Edit;
+            //}
 
-            // Restore the active panel
-            //vViewModel.ActivePanels = vActivepanels.IsNullOrEmptyOrBlankCode()
+            //// Restore the active panel
+            //vViewModel.ActivePanels = string.IsNullOrEmpty(vActivepanels)
             //    ? QuestionnaireMaintenanceViewModel.AccordionPanelHtmlIDDeel1
             //    : vActivepanels;
 
@@ -179,53 +300,62 @@ namespace LeoCore.Controllers
            
         }
 
-
-
         #endregion
 
 
 
         #region Private Methods - Maintenance
-        /// <summary>
-        /// Returns a Questionnaire maintenance viewmodel for the specified  ID
-        /// </summary>
-        /// <param name="pID">Questionnaire ID</param>
-        /// <param name="pActivity">Optional activity status for the View </param>
-        /// <returns></returns>
-        /// //https://localhost:44335/Questionnaires/Maintenance?pID=22&&pTRAININGID=1
-        private QuestionnaireMaintenanceViewModel GetMaintenanceViewModel(int? pID, ActivityStatusEnum? pActivity = null, bool pIsLeraar = false)
+        private QuestionnaireMaintenanceViewModel GetMaintenanceViewModel(int pID, bool pIsLeraar = false)
         {
+            var vQuestionnaireMaintenanceViewModel = new QuestionnaireMaintenanceViewModel(_usercoderepository);
+            vQuestionnaireMaintenanceViewModel.UniqueID = Guid.NewGuid().ToString();
             //pID is hier de TrainingID. We gaan adhv de training ID kijken of 
-
-            ////eerst checkenof we voor deze trainingID en voor deze ClientID reeds een Questionnaire hebben ingevuld
-            //var vMaintenanceUseCase = IocManager.Resolve<IPersonQuestionnaireMaintenanceUseCase>();
-            //vMaintenanceUseCase.ValidationDictionary = new ModelStateWrapper(this.ModelState);
-            //vMaintenanceUseCase.ID = (pID == null) ? 0 : pID.Value;
-            //vMaintenanceUseCase.IsLeraar = pIsLeraar;
-            //vMaintenanceUseCase.CurrentUserClientID = ""; // Request.GetOwinContext().Authentication.User.Identity.Name;  //$$µµ Session["ClaimsEmail"].ToString();
-            //vMaintenanceUseCase.Execute();
-            //Business.Models.Questionnaires.PersonQuestionnaireMaintenanceModel vPersonQuestionnaireMaintenanceModel = vMaintenanceUseCase.Result;
-
-            // Map QuestionnaireMaintenanceModel (business layer) to QuestionnaireMaintenanceViewModel (presentation layer)
-           // var vViewModel = null; // MapHelper.MapSingle(vPersonQuestionnaireMaintenanceModel).To<QuestionnaireMaintenanceViewModel>();
-            //titel en lees/edit enz
-            string vTitleFormatString;
-            if (pID == 0)
+            //eerst checkenof we voor deze trainingID en voor deze ClientID reeds een Questionnaire hebben ingevuld
+            if (_questionnairerepository.GetQUESTIONNAIREByTRAININGID(pID) != null)
             {
-                // Create new Questionnaire
+                LeoCore.Data.Models.PERSON_QUESTIONNAIRE vPersonQuestionnaire = _personquestionnairerepository.GetPERSON_QUESTIONNAIREByTRAININGIDAndByCLIENTID(pID, "ruddi.cuyvers@limburg.wgk.be", true, true);
+                if(vPersonQuestionnaire == null)
+                {
+
+                    vPersonQuestionnaire = new PERSON_QUESTIONNAIRE();
+                    vPersonQuestionnaire.CLIENT_ID = "ruddi.cuyvers@limburg.wgk.be";
+                    vPersonQuestionnaire.TRAINING_ID = pID;
+                    
+
+                }
+                else
+                {
+                    vQuestionnaireMaintenanceViewModel.QuestionnaireDetail = vPersonQuestionnaire.QUESTIONNAIRE;
+
+                }
                 
-                vTitleFormatString = CommonLiterals.MaintenancePageCreateTitle;
-            }
-            else
-            {
-                // bestaande Questionnaire openen. Je mag enkel kijken maar niets aanpassen
-               
-                vTitleFormatString = CommonLiterals.MaintenancePageViewTitle;
+                
+             
+                //onderstaand een lijstje met alle questions. De pure Question uit de table Question. Dit om de Text en type te vinden.
+                //Hier de IList maken. Zodat we niet steeds op en neer naar de repo en context moeten gaan
+                IList<QUESTION>vAllQuestionsList = _questionnairerepository.FindAllQuestions();
+                //alle vragen die bij een questionnaire horen 
+                foreach (var i in vQuestionnaireMaintenanceViewModel.QuestionnaireDetail.QUESTIONNAIRE_QUESTIONs)
+                {
+                    //als er nog geen geen Person_Questionnnaire record is . Bij voorbeeld bij een nieuwe deze dan maken.
+                    if (vPersonQuestionnaire.PERSON_QUESTIONNAIRE_ANSWERs == null || vPersonQuestionnaire.PERSON_QUESTIONNAIRE_ANSWERs.ToList().Exists(m => m.QUESTION_ID == i.QUESTION_ID) == false)
+                    {
+                        PERSON_QUESTIONNAIRE_ANSWER lPersonQuestionnaireAnswer = new PERSON_QUESTIONNAIRE_ANSWER();
+                        lPersonQuestionnaireAnswer.ID = -1;  //om aan te geven dat het een nieuwe is
+                        lPersonQuestionnaireAnswer.PERSON_QUESTIONNAIRE = vPersonQuestionnaire;
+                        lPersonQuestionnaireAnswer.PERSON_QUESTIONNAIRE_ID = vPersonQuestionnaire.ID;
+                        lPersonQuestionnaireAnswer.QUESTION_ID = i.QUESTION_ID;
+                        lPersonQuestionnaireAnswer.QQORDER_AS_WAS = i.SORTORDER;
+                        lPersonQuestionnaireAnswer.QTEXT_AS_WAS = vAllQuestionsList.Where(q=>q.ID == i.QUESTION_ID).Select(n=>n.TEXT).First();
+                        lPersonQuestionnaireAnswer.QTYPEANSWER_AS_WAS = vAllQuestionsList.Where(q => q.ID == i.QUESTION_ID).Select(n => n.TYPE_ANSWER).First();  
+                        vPersonQuestionnaire.PERSON_QUESTIONNAIRE_ANSWERs.Add(lPersonQuestionnaireAnswer);
+                    }
+
+                }
+                vQuestionnaireMaintenanceViewModel.Person_QuestionnaireDetail = vPersonQuestionnaire;
             }
 
-        
-            //ViewModel good to go
-            return null;
+            return vQuestionnaireMaintenanceViewModel;
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ using System.Security.Cryptography;
 
 namespace LeoCore.Controllers
 {
-    [Authorize] //$$µµ
+    [Authorize] 
     public class AccountController : Controller
     {
         public AccountController()
@@ -53,6 +53,10 @@ namespace LeoCore.Controllers
             //var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
            
             var user = new IdentityUser();
+
+           
+
+
             //_signInManager.CreateUserPrincipalAsync(user);
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }

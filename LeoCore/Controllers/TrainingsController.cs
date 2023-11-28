@@ -65,19 +65,19 @@ namespace LeoCore.Controllers
         #region Action Methods - Maintenance
 
         [HttpGet]
-        public ViewResult Maintenance(int id)
+        public ViewResult Maintenance(int? pID, bool pIsLeraar = false)
         {
-            var vViewModel = GetMaintenanceViewModel(id);
+            var vViewModel = GetMaintenanceViewModel(pID);
             return this.View(vViewModel);
         }
 
         [HttpPost]
         [NoCaching]
-        public async Task<IActionResult> Maintenance(int? id)
+        public async Task<IActionResult> Maintenance(int? pID)
         {
             //if (this.ModelState.IsValid)
             //{
-            if (id == null)
+            if (pID.Value == null)
             {
                 var vTraining = new TRAINING();
                 if (await TryUpdateModelAsync<Data.Models.TRAINING>(vTraining, "TRAININGDetail"))
@@ -102,7 +102,7 @@ namespace LeoCore.Controllers
             {
 
                 //binding
-                var TrainingToUpdate = _repository.GetTRAINING(id);
+                var TrainingToUpdate = _repository.GetTRAINING(pID);
                 if (await TryUpdateModelAsync<Data.Models.TRAINING>(TrainingToUpdate, "TRAININGDetail"))
                 {
                     try

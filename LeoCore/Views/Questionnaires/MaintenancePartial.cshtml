@@ -12,91 +12,30 @@
 
 @model QuestionnaireMaintenanceViewModel
 
-@{
-    // Uncommented in order to disable client-side validation for this View so we get no different behavior
-    // between client-side and server-side validation
-    //Html.EnableClientValidation(false);
-    //Html.EnableUnobtrusiveJavaScript(false);
-}
-
 <script type="text/javascript">
 
     var vIsSubmitting = false;
 
     $(document).ready(function () {
-       
-        //     // When navigating to another URL or closing the browser window:
-        //     // Set 'LeavePage' warning when View is in Edit or Insert mode.
-        //     // Cannot use jQuery to bind this event handler, use native code instead.
-        //     <text>window.onbeforeunload = function(pEvent) {
-        //     if(vIsSubmitting) {@*Not when form is busy in a submit*@
-        //         return;
-        //     }
-        //     var vConfirmationMessage = '@(CommonLiterals.LeavePageWarningMessage)';
-        //     (pEvent || window.event).returnValue = vConfirmationMessage;
-        //     return vConfirmationMessage;
-        // };</text>
-  
-      
 
-//        
+    @*Form submit buttons*@
+            $('#SaveButton').click(function (pEvent) {
+                submitForm.call(pEvent.currentTarget); @* Set function context (this) to the button that is clicked *@
+                    });
 
-//         vForm$.submit(function() {
-//             @*Form Submit event handler.
-//                 When using client side validation, make sure that the form has no validation errors,
-//                 otherwise form will not be submitted by the validation plugin *@
-//             @if (this.ViewContext.ClientValidationEnabled) {
-//             @:if ($(this).valid()) {
-// }
-//                 @*Busy indicator is NOT SHOWN when we call submit the form from within an ajax succes event handler.
-//                     This is caused by the global ajaxStop event handler in the master layout.
-//                     Remove the global ajaxStop event handler before submitting the form.*@
-//                 $('body').unbind('ajaxStop');
-//                 $("#indicator").show();
-//                 $("#ErrorMessage").html("");
-//                 $("#InfoMessage").html("");
-//                 $('#screen').css({ display: 'block', opacity: 0.2, width: $(document).width(), height: $(document).height() });
-//                 window.onbeforeunload = null;@*Disable displaying a 'LeavePage' warning before submitting the form*@
-//                 vIsSubmitting = true;@*Set 'IsSubmitting' flag in order to prevent calling UnlockAndCancelGisPendingEdits while busy saving the Training*@
-//                 @if (this.ViewContext.ClientValidationEnabled) {
-//             @:}
-// }
-//             return true;
-//         });
-
-        // @*Form submit buttons*@
-        // $('#SaveButton', vForm$).click(function(pEvent){@* Save all editable rows before submitting *@
-
-        //     // $('#@(BaseMaintenanceViewModel.IsSaveInBetweenFieldName)', vForm$).val('false');@*Clear IsSaveInBetween flag so form switches to View modus after a successful update*@
-        //     // submitForm.call(pEvent.currentTarget); @* Set function context (this) to the button that is clicked *@
-        // });
-
-        // $('#CancelButton', vForm$).click(function (pEvent) {@* Close dialog box without returning a result ID *@
-        //     window.close();
-        // });
+    @* -- Submit form method*@
+            function submitForm() {
+                var vSource = this;
+                submitClosestForm(vSource);  
+            }
+    }); @* END OF $(document).ready function *@
 
 
-        // @* -- Submit form method*@
-        // function submitForm() {
-        //     var vSource = this;
-        //     submitClosestForm(vSource);
-        // }
-   });@* END OF $(document).ready function *@
-
-
-  
-    }
 
 </script>
 
-@*-- Form --*@
-@using (this.Html.BeginForm(null, null, FormMethod.Post, new { id = "MaintenanceForm" }))
+@using (this.Html.BeginForm(null, null, new { pID = this.Model.Person_QuestionnaireDetail.ID }, FormMethod.Post ))
 {
-    @*-- Messages --*@
-    @* Render div for info and error messages inside the form *@
-    @Html.Partial("MessagePartial")
-    @* Remark: ValidationSummary must be inside the form and set excludePropertyErrors to false *@
-    @Html.ValidationSummary(false, CommonLiterals.ValidationSummaryTitle)
 
     @*-- Header panel --*@
     <div class="kaart card">
@@ -105,34 +44,32 @@
     </div>
     <div class="kaart card">
         <div >
-            @this.Html.Label("Heb jij de vorming gegeven? Ga via onderstaande link naar de lesgever vragenlijst.")
-          @*   <a href="@Url.Action("Maintenance", "Questionnaires", new { pID = this.Model.Person_QuestionnaireDetail.TRAINING_ID , pIsLeraar=true })">
+            @this.Html.Label(@"Heb jij de vorming gegeven? Ga via onderstaande link naar de lesgever vragenlijst.")
+            <a href="@Url.Action("Maintenance", "Questionnaires", new { pID = this.Model.Person_QuestionnaireDetail.TRAINING_ID , pIsLeraar=true })">
                 lesgever link
-            </a> *@
+            </a> 
         </div>
         </div>
         @*-- Tab pages --*@
-
         // Tab panels are not shown in Create and Select modus
-      
         @* We must set the FormID on the accordion widget for when form is rendered in a dialog box *@
         <div class="kaart card">
-           @*  <h2>Tevredenheidsvragenlijst @Model.Title</h2> *@
-            @Html.Partial("MaintenanceInhoudPartial")
+            <h2>Tevredenheidsvragenlijst @Model.Title</h2> 
+            @this.Html.Partial("MaintenanceInhoudPartial")
         </div>
-  
-
-
-        @*-- Footer buttons--*@
-        <div class="kaart card btngrp">
-            <div class="buttonsdiv">
-                @this.Html.Partial("MaintenanceButtonsPartial")
-            </div>
-            @*-- Hidden fields --*@
-            @*@Html.HiddenFor(pModel => pModel.TRAININGDetail.RowVersion)
-            @Html.HiddenFor(pModel => pModel.ActivityStatus)*@
-            @Html.HiddenFor(pModel => pModel.QuestionnaireDetail.ID)
-   @*          @Html.HiddenFor(pModel => pModel.Person_QuestionnaireDetail.ID) *@
-            @*@Html.HiddenFor(pModel => pModel.ActivePanels)*@
+    @*-- Footer buttons--*@
+    <div class="kaart card btngrp">
+        <div class="buttonsdiv">
+            <input type="button"
+                   value="save"
+                   id="SaveButton" />
         </div>
-        }@*end form*@
+        @*-- Hidden fields --*@
+        @*@Html.HiddenFor(pModel => pModel.TRAININGDetail.RowVersion)
+    @Html.HiddenFor(pModel => pModel.ActivityStatus)*@
+        @Html.HiddenFor(pModel => pModel.QuestionnaireDetail.ID)
+        @*@Html.HiddenFor(pModel => pModel.ActivePanels)*@
+ 
+        @*end form*@
+    </div>
+}

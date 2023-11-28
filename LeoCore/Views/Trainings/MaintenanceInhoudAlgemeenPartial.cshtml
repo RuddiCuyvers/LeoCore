@@ -86,29 +86,21 @@
                 <div class="row align-items-start">
                     <div class="col"> <h4>@Html.Label(TRAININGDisplayNames.cTRAINING_TYPEDisplayName):</h4></div>
                     <div class="col">
-
-                      @*  @this.Html.WGKUserCodeDropDownListFor(
-                                     pModel => pModel.TRAININGDetail.TRAINING_TYPE,
-                                     pModel => pModel.UserCodeManager,
-                                     UserCodeGroupCode.cTypeTrainingLijst,
-                                     true, // pAddBlankCode
-                                     null,
-                                     null, // pParentUserCodeID
-                                     null,  //Hide if readOnly
-                                     false, // pIncludeSoftDeleted
-                                     new { style = "" },
-                                     ActivityStatusEnablementEnum.EditInsert
-                                    )*@
+                        @Html.DropDownListFor(
+                            pModel => pModel.TRAININGDetail.TRAINING_TYPE,
+                            Model.cTRAINING_TYPELijst, "", null
+                        )
+            
                     </div>
                 </div>
                 <div class="row align-items-start">
                     <div class="col"> <h4>@Html.Label(TRAININGDisplayNames.cDURATION_OVERALLDisplayName):</h4></div>
                     <div class="col">
 
-         @*                @Html.TextBoxFor(
+                      @*    @Html.TextBoxFor(
                                 pModel => pModel.TRAININGDetail.DURATION_OVERALL,
                                  new { @list = "limittimeslist", @type = "time", @step = "900", @valueAsDate = true },
-                                ActivityStatusEnablementEnum.EditInsert) *@
+                                ActivityStatusEnablementEnum.EditInsert)  *@
                     </div>
                 </div>
             </div>
@@ -126,17 +118,11 @@
                 <div class="row align-items-start">
                     <div class="col"> <h4>Intern of externe lesgever?</h4></div>
                     <div class="col">
-                       @* @this.Html.WGKUserCodeDropDownListFor(
-                              pModel => pModel.TRAININGDetail.TRAINER_INT_EXT,
-                              pModel => pModel.UserCodeManager,
-                              UserCodeGroupCode.cEXT_INTLijst,
-                              true, // pAddBlankCode
-                              null,
-                              null, // pParentUserCodeID
-                              null,  //Hide if readOnly
-                              false, // pIncludeSoftDeleted
-                              new { style = "" },
-                              ActivityStatusEnablementEnum.EditInsert)*@
+                        @Html.DropDownListFor(
+                        pModel => pModel.TRAININGDetail.TRAINER_INT_EXT,
+                        Model.cEXT_INTLijst, "", null
+                        )
+                       
                     </div>
                 </div>
                 <div class="row align-items-start">
@@ -177,18 +163,11 @@
                                 <input class="form-check-input" type="checkbox" role="switch" id="NCCGSwitch">
                                 <h4 class="form-check-label" for="NCCGSwitch">Valt de vorming onder nomenclatuur en conventie gerelateerd ?</h4>
                             </div>
-
-                         @*   @this.Html.WGKUserCodeDropDownListFor(
-                                                     pModel => pModel.TRAININGDetail.NOMENCL_CONV_YN,
-                                                     pModel => pModel.UserCodeManager,
-                                                     UserCodeGroupCode.cJaNeeLijst,
-                                                     false, // pAddBlankCode
-                                                     null,
-                                                     null, // pParentUserCodeID
-                                                     null,  //Hide if readOnly
-                                                     false, // pIncludeSoftDeleted
-                                                     new { style = "" },
-                                                     ActivityStatusEnablementEnum.EditInsert)*@
+                            @Html.DropDownListFor(
+                            pModel => pModel.TRAININGDetail.NOMENCL_CONV_YN,
+                            Model.cJaNeeLijst, "", null
+                            )
+                       
                         </div>
                     </div>
                 </div>

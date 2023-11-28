@@ -51,17 +51,9 @@ namespace LeoCore.Models.Trainings
             _usercoderepository = usercoderepository;
             //methodologielijstje
             cMETHODOLOGYLijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
-            //var mlijst = _usercoderepository.GetUserCodesForUserCodeGroup(UserCodeGroupCode.cMETHODOLOGYLijst, false, false);
-            //if (mlijst != null)
-            //{
-            //    cMETHODOLOGYLijst = new List<SelectListItem>() ; //zodat er niks blijft hangen van een vorige keer
-            //    int i = 0;
-            //    foreach (var m in mlijst)
-            //    {
-            //        cMETHODOLOGYLijst.Insert(i, (new SelectListItem { Text = m.DESCRIPTION, Value = m.USERCODEID}));
-            //        i++;
-            //    };
-            //};
+            cTRAINING_TYPELijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cTypeTrainingLijst, false, false);
+            cEXT_INTLijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cEXT_INTLijst, false, false);
+            cJaNeeLijst = _usercoderepository.GetLISTITEMSLISTUserCodesForUserCodeGroup(UserCodeGroupCode.cJaNeeLijst, false, false);
         }
 
 
@@ -70,7 +62,11 @@ namespace LeoCore.Models.Trainings
         #region Base class implementation
         public LeoCore.Data.Models.TRAINING TRAININGDetail { get; set; }
 
+        public List<SelectListItem>  cEXT_INTLijst { get; set; }
+        public List<SelectListItem> cTRAINING_TYPELijst { get; set; }
         public List<SelectListItem> cMETHODOLOGYLijst { get; set; }
+
+        public List<SelectListItem> cJaNeeLijst { get; set; }
 
         public string Qrcode;
 
